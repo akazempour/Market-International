@@ -1,0 +1,57 @@
+﻿body,html,div,blockquote,img,label,p,h1,h2,h3,h4,h5,h6,pre,ul,ol,li,dl,dt,dd,form,a,fieldset,input,th,td{border:0;outline:none;margin:0;padding:0;}
+
+
+#nav {float: left; width: 280px; border-top: 1px solid #999; border-right: 1px solid #999; border-left: 1px solid #999; margin-bottom: 15px;}
+#nav li a {display: block; padding: 10px 15px; background: #ccc; border-top: 1px solid #eee; border-bottom: 1px solid #999; text-decoration: none; color: #000;}
+#nav li a:hover, #nav li a.active {background: #999; color: #fff;}
+#nav li ul {display: none;}
+#nav li ul li a {padding: 10px 25px; background: #ececec; border-bottom: 1px dotted #ccc;}
+body{
+    background: azure;
+}
+
+    body{
+        color: white; text-shadow: black 0.1em 0.1em 0.2em;font-family: "Times New Roman", Times, serif;
+    }
+    #shadoe_div,#slider1_container{                
+        -webkit-box-shadow: 0 0 30px 5px #320404;
+    }
+    #SelectLanguage {
+        font-size: larger;
+        background-color: beige;
+        -webkit-box-shadow: 0 0 30px 5px #320404;
+    }
+
+    #three-d{
+	color: #fff;
+	text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+	font: 120px 'ChunkFiveRegular';
+}
+
+
+div.img {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #0000ff;
+    height: auto;
+    width: auto;
+    float: left;
+    text-align: center;
+}
+
+div.img img {
+    display: inline;
+    margin: 5px;
+    border: 1px solid #ffffff;
+}
+
+div.img a:hover img {
+    border:1px solid #0000ff;
+}
+
+div.desc {
+    text-align: center;
+    font-weight: normal;
+    width: 120px;
+    margin: 5px;
+}
