@@ -6,7 +6,7 @@
 <head runat="server">
     <title></title>
 
-    <style>
+    <style> 
         .butt {
             font-size: x-large;
             width:49%;
