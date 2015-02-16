@@ -27,6 +27,7 @@
             }
         }
     </script>
+        <a href="js/">js/</a>
 
             <asp:Image ID="ImgPrv" Height="150px" Width="240px" runat="server" /><br />
             <asp:FileUpload ID="flupImage" runat="server" onchange="ShowpImagePreview(this);" />

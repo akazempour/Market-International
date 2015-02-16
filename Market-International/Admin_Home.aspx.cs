@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,6 +12,57 @@ namespace Market_International
     public partial class Admin_Home : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["admin"] != "admin_log")
+                Response.Redirect("./login_admin.aspx");
+
+            string del = Request["action"];
+            string id = Request["id"];
+            if(del=="delete")
+            {
+                DetailDelete(id); 
+            }
+        }
+
+
+        private void DetailDelete(string id)
+        {
+            sql_object sql_obj = new sql_object();
+            DetailObject Detail = sql_obj.GetDetail(id);
+            string imgPath;
+            imgPath = "image/" + Detail.img1;
+            if (File.Exists(Server.MapPath(imgPath)))
+            {
+                File.Delete(Server.MapPath(imgPath));
+            }
+
+            imgPath = "image/" + Detail.img2;
+            if (File.Exists(Server.MapPath(imgPath)))
+            {
+                File.Delete(Server.MapPath(imgPath));
+            }
+
+            imgPath = "image/" + Detail.img3;
+            if (File.Exists(Server.MapPath(imgPath)))
+            {
+                File.Delete(Server.MapPath(imgPath));
+            }
+
+            imgPath = "image/" + Detail.img4;
+            if (File.Exists(Server.MapPath(imgPath)))
+            {
+                File.Delete(Server.MapPath(imgPath));
+            }
+
+            imgPath = "image/" + Detail.img5;
+            if (File.Exists(Server.MapPath(imgPath)))
+            {
+                File.Delete(Server.MapPath(imgPath));
+            }
+
+            sql_obj.DetailDelete(Convert.ToInt32(id));
+        }
+        protected void MainCategory_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -64,7 +116,7 @@ namespace Market_International
             int id_Cat = Convert.ToInt32(main_category.Text);
             int id_SubCat = Convert.ToInt32(sub_category.Text);
             string url = "./AdminDetailAdd.aspx?action=add&id_subcat=" + id_SubCat;
-            Response.Redirect(url); 
+            Response.Redirect(url);
         }
 
 

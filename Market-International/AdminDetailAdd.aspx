@@ -81,6 +81,12 @@
     <br />
     <asp:HiddenField ID="FieldAction"  runat="server" />
     <asp:HiddenField ID="FieldId"  runat="server" />
+    <asp:HiddenField ID="FieldImage1" runat="server" />
+    <asp:HiddenField ID="FieldImage2" runat="server" />
+    <asp:HiddenField ID="FieldImage3" runat="server" />
+    <asp:HiddenField ID="FieldImage4" runat="server" />
+    <asp:HiddenField ID="FieldImage5" runat="server" />
+    <asp:HiddenField ID="Fieldid1" runat="server" />
 
 
 </asp:Content>

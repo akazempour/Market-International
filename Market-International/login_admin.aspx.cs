@@ -26,6 +26,7 @@ namespace Market_International
             {
                 Login_error.Visible = false;
                 Session["admin"] = "admin_log";
+                Response.Redirect("./Admin_Home.aspx");
             }
             else
             {

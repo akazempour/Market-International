@@ -16,7 +16,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br /><br /><br /><br />
 <label>Main Category:</label>
-<asp:DropDownList CssClass="drop_doen_style" ID="main_category" runat="server" AutoPostBack="True" OnSelectedIndexChanged="main_category_SelectedIndexChanged"></asp:DropDownList>
+<asp:DropDownList CssClass="drop_doen_style" ID="main_category" runat="server" AutoPostBack="True" OnSelectedIndexChanged="main_category_SelectedIndexChanged" OnLoad="MainCategory_Load"></asp:DropDownList>
 <br /><br />
 <label>Sub Category:</label>
 <asp:DropDownList CssClass="drop_doen_style" ID="sub_category" runat="server" AutoPostBack="True" OnSelectedIndexChanged="sub_category_SelectedIndexChanged"></asp:DropDownList>
@@ -89,16 +89,35 @@
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead>
 <tr>
-<th>Title</th><th>SubTitle</th><th>Desc1</th><th>Desc2</th><th>Img1</th><th>Img2</th><th>Img3</th><th>Img4</th><th>Img5</th><th>Edit</th><th>Delete</th></tr>
+<th>title</th><th>SubTitle</th><th>Desc1</th><th>Desc2</th><th>created</th><th>Img1</th><th>Img2</th><th>Img3</th><th>Img4</th><th>Img5</th><th>Edit</th><th>Delete</th>
 </thead>
 <tfoot>
 <tr>
-<th>Title</th><th>SubTitle</th><th>Desc1</th><th>Desc2</th><th>Img1</th><th>Img2</th><th>Img3</th><th>Img4</th><th>Img5</th><th></th><th></th></tr>
+<th>title</th><th>SubTitle</th><th>Desc1</th><th>Desc2</th><th>created</th><th>Img1</th><th>Img2</th><th>Img3</th><th>Img4</th><th>Img5</th><th>Edit</th><th>Delete</th>
+
+</tr>
 </tfoot>
 <tbody>
-<tr><td>1</td><td>SubTitle</td><td>Desc1</td><td>Desc2</td><td>Img1</td><td>Img2</td><td>Img3</td><td>Img4</td><td>Img5</td><td>Edit</td><td>Delete</td></tr>
-<tr><td>2</td><td>SubTitle</td><td>Desc1</td><td>Desc2</td><td>Img1</td><td>Img2</td><td>Img3</td><td>Img4</td><td>Img5</td><td>Edit</td><td>Delete</td></tr>
 
+<%
+    int sub = Convert.ToInt32(sub_category.Text);
+    Market_International.sql_object Sql_Obj = new Market_International.sql_object();
+    List<Market_International.DetailObject> DetailRecord = Sql_Obj.GetDetail(sub);
+    string Desc1 = null;
+    string Desc2 = null;
+    string edit = null;
+    string delete = null;    
+    
+    foreach (Market_International.DetailObject item in DetailRecord)
+    {
+        Desc1 = item.Desc1.Length > 21 ? item.Desc1.Substring(0, 20) : item.Desc1;
+        Desc2 = item.Desc2.Length > 21 ? item.Desc2.Substring(0, 20) : item.Desc2;
+        edit = "<a href=\"./AdminDetailAdd.aspx?action=edit&id=" + item.id + "&id_subcat=" + sub + "\">Edit</a>";
+        delete = "<a href=\"./Admin_Home.aspx?action=delete&id=" + item.id + "\">Delete</a>";  
+     %>
+       <tr><td><%=item.title %></td><td><%=item.subtitle %></td><td><%= Desc1 %></td><td><%= Desc2 %></td><td><%=item.created %></td><td><%=item.img1 %></td>
+           <td><%=item.img2 %></td><td><%=item.img3 %></td><td><%=item.img4 %></td><td><%=item.img5 %></td><td><%=edit %></td><td><%=delete %></td></tr>
+<%} %>
 </tbody></table></p>
 
 

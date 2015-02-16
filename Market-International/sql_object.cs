@@ -16,16 +16,14 @@ namespace Market_International
         SqlDataReader dataReader;
 
         //initialized 
-        #region 
         private void initialize()
         {
             connetionString = "Data Source=SQL5006.Smarterasp.net;Initial Catalog=DB_9B7F5F_kaz;User Id=DB_9B7F5F_kaz_admin;Password=Admiral1;";
 
         }
-        #endregion
 
         // Convert into hash 
-        #region 
+        #region
         private string hash_function(string PassWrd)
         {
             //step 1 and 2
@@ -42,17 +40,16 @@ namespace Market_International
             return storableHashResult;
             // add your code here
         }
-        #endregion 
+        #endregion
 
         // Get admin login 
-        #region 
         public Boolean admin_login(string log_user, string passwrd)
         {
             string hash_passwrd = hash_function(passwrd);  //admin_03_24_1963
             Boolean return_value = false;
 
 
-            sql = "select * from admin_login where user_name = @user_name ";
+            sql = "select id,user_name,password from admin_login where user_name = @user_name ";
             initialize();
             connection = new SqlConnection(connetionString);
             try
@@ -70,7 +67,7 @@ namespace Market_International
             }
             catch (Exception ex)
             {
-                string temp1 = ex.ToString() ; 
+                string temp1 = ex.ToString();
             }
 
             dataReader.Close();
@@ -78,12 +75,10 @@ namespace Market_International
             connection.Close();
             return return_value;
         }
-        #endregion
 
 
         //Update Main Category
-        #region
-        public void MainCatUpd(int id, string value,int show)
+        public void MainCatUpd(int id, string value, int show)
         {
             sql = "update Category_Main set Category= @Category, show=@show where id = @id ";
             initialize();
@@ -97,10 +92,8 @@ namespace Market_International
             command.Dispose();
             connection.Close();
         }
-        #endregion
         //Add Main Category
-        #region
-        public void MainCatAdd(string value,int show)
+        public void MainCatAdd(string value, int show)
         {
             sql = "insert into Category_Main (Category,show) values(@value,@show) ";
             initialize();
@@ -113,9 +106,7 @@ namespace Market_International
             command.Dispose();
             connection.Close();
         }
-        #endregion
         // show 
-        #region 
         public Boolean show(int id)
         {
             Boolean return_value = false;
@@ -130,13 +121,13 @@ namespace Market_International
             connection.Open();
             command = new SqlCommand(sql, connection);
 
-            if(id>0)
+            if (id > 0)
                 command.Parameters.Add(new SqlParameter("id", id));
 
             dataReader = command.ExecuteReader();
             if (dataReader.Read())
             {
-                if (Convert.ToInt32(dataReader.GetValue(1)) == 1 )
+                if (Convert.ToInt32(dataReader.GetValue(1)) == 1)
                     return_value = true;
 
             }
@@ -146,9 +137,7 @@ namespace Market_International
             return return_value;
 
         }
-        #endregion
         //Delete main Category
-        #region
         public void MainCatDel(int id)
         {
             sql = "delete from Category_Main where id = @id ";
@@ -162,9 +151,7 @@ namespace Market_International
             connection.Close();
 
         }
-        #endregion
         // Sub Category Add
-        #region 
         public void SubCatAdd(int id_category, string Cat_sub, int show)
         {
             sql = "insert into Category_Sub (id_category,Cat_sub,show) values(@id_category,@Cat_sub,@show) ";
@@ -179,12 +166,10 @@ namespace Market_International
             command.Dispose();
             connection.Close();
         }
-        #endregion
         //Get First Category 
-        #region
         public int GetFirstCat()
         {
-            int lreturn = 0 ;
+            int lreturn = 0;
             sql = "select Top 1 id from dbo.Category_Main order by Category";
             initialize();
             connection = new SqlConnection(connetionString);
@@ -193,16 +178,14 @@ namespace Market_International
             dataReader = command.ExecuteReader();
             if (dataReader.Read())
             {
-                lreturn = Convert.ToInt32(dataReader.GetValue(0)); 
+                lreturn = Convert.ToInt32(dataReader.GetValue(0));
             }
             dataReader.Close();
             command.Dispose();
             connection.Close();
             return lreturn;
         }
-        #endregion
         //Update SubCategory
-        #region 
         public void SubCatUpd(int id, string Cat_sub, int show)
         {
             sql = "update Category_Sub set Cat_sub = @Cat_sub, show=@show where id = @id ";
@@ -217,9 +200,7 @@ namespace Market_International
             command.Dispose();
             connection.Close();
         }
-        #endregion
         // SubCat Delete
-        #region
         public void SubCatDel(int id)
         {
             sql = "delete from Category_Sub where id = @id ";
@@ -233,9 +214,7 @@ namespace Market_International
             connection.Close();
 
         }
-        #endregion
         //Get Show Value 
-        #region 
         public Boolean SubShow(int id)
         {
             Boolean return_value = false;
@@ -266,10 +245,8 @@ namespace Market_International
             return return_value;
 
         }
-        #endregion
 
         //drop down category main
-        #region
         public SqlDataReader get_category_query()
         {
             sql = "select id,Category from category_main order by Category ";
@@ -280,9 +257,7 @@ namespace Market_International
             SqlDataReader dataReader = command.ExecuteReader();
             return dataReader;
         }
-        #endregion
         // drop down subcategory
-        #region 
         public SqlDataReader get_sub_cat_query(int IdCatLoc)
         {
             sql = "select id,Cat_sub from Category_Sub where id_category = @IdCatLoc order by Cat_sub  ";
@@ -294,11 +269,9 @@ namespace Market_International
             SqlDataReader dataReader = command.ExecuteReader();
             return dataReader;
         }
-        #endregion 
 
 
         // Close connection 
-        #region
         public void close_connection()
         {
             command.Dispose();
@@ -308,8 +281,7 @@ namespace Market_International
             /* connection.Close();
             connection.Dispose(); */
         }
-        #endregion
-
+        //add Detail
         public void DetailAdd(int id_subcat, string Title, string SubTitle, string Desc1, string Desc2, string img1, string img2,
             string img3, string img4, string img5, int ScreenImg, int show)
         {
@@ -319,11 +291,16 @@ namespace Market_International
             connection = new SqlConnection(connetionString);
             connection.Open();
 
+            img1 = img1 == null?"":img1;
+            img2 = img2 == null ? "" : img2;
+            img3 = img3 == null ? "" : img3;
+            img4 = img4 == null ? "" : img4;
+            img5 = img5 == null ? "" : img5;
             command = new SqlCommand(sql, connection);
             command.Parameters.Add(new SqlParameter("id_subcat", id_subcat));
             command.Parameters.Add(new SqlParameter("Title", Title));
             command.Parameters.Add(new SqlParameter("SubTitle", SubTitle));
-            command.Parameters.Add(new SqlParameter("Desc1",Desc1));
+            command.Parameters.Add(new SqlParameter("Desc1", Desc1));
             command.Parameters.Add(new SqlParameter("Desc2", Desc2));
             command.Parameters.Add(new SqlParameter("img1", img1));
             command.Parameters.Add(new SqlParameter("img2", img2));
@@ -338,6 +315,123 @@ namespace Market_International
             command.Dispose();
             connection.Close();
 
+        }
+
+        // Get Detail
+        public List<DetailObject> GetDetail(int SubCategory)
+        {
+            List<DetailObject> ReturnObject = new List<DetailObject>();
+
+            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show from Detail  where id_subcat = @id_subcat order by title ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+
+            command.Parameters.Add(new SqlParameter("id_subcat", SubCategory));
+
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                DetailObject ReturnRecord = new DetailObject();
+
+                ReturnRecord.id = Convert.ToInt32(dataReader.GetValue(0));
+                ReturnRecord.id_subcat = Convert.ToInt32(dataReader.GetValue(1));
+                ReturnRecord.title = dataReader.GetValue(2).ToString();
+                ReturnRecord.subtitle = dataReader.GetValue(3).ToString();
+                ReturnRecord.Desc1 = dataReader.GetValue(4).ToString();
+                ReturnRecord.Desc2 = dataReader.GetValue(5).ToString();
+                ReturnRecord.created = Convert.ToDateTime(dataReader.GetValue(6));
+                ReturnRecord.img1 = dataReader.GetValue(7).ToString();
+                ReturnRecord.img2 = dataReader.GetValue(8).ToString();
+                ReturnRecord.img3 = dataReader.GetValue(9).ToString();
+                ReturnRecord.img4 = dataReader.GetValue(10).ToString();
+                ReturnRecord.img5 = dataReader.GetValue(11).ToString();
+                ReturnRecord.ScreenImg = Convert.ToInt32(dataReader.GetValue(12));
+                ReturnRecord.show = Convert.ToInt32(dataReader.GetValue(13));
+                ReturnObject.Add(ReturnRecord);
+            }
+            dataReader.Close();
+            command.Dispose();
+            connection.Close();
+            return ReturnObject;
+        }
+        public DetailObject GetDetail(string id)
+        {
+            int LocalId = Convert.ToInt32(id); 
+            DetailObject ReturnRecord = new DetailObject();
+
+            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show from Detail  where id = @id order by title ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+
+            command.Parameters.Add(new SqlParameter("id", LocalId));
+
+            dataReader = command.ExecuteReader();
+            if (dataReader.Read())
+            {
+
+                ReturnRecord.id = Convert.ToInt32(dataReader.GetValue(0));
+                ReturnRecord.id_subcat = Convert.ToInt32(dataReader.GetValue(1));
+                ReturnRecord.title = dataReader.GetValue(2).ToString();
+                ReturnRecord.subtitle = dataReader.GetValue(3).ToString();
+                ReturnRecord.Desc1 = dataReader.GetValue(4).ToString();
+                ReturnRecord.Desc2 = dataReader.GetValue(5).ToString();
+                ReturnRecord.created = Convert.ToDateTime(dataReader.GetValue(6));
+                ReturnRecord.img1 = dataReader.GetValue(7).ToString();
+                ReturnRecord.img2 = dataReader.GetValue(8).ToString();
+                ReturnRecord.img3 = dataReader.GetValue(9).ToString();
+                ReturnRecord.img4 = dataReader.GetValue(10).ToString();
+                ReturnRecord.img5 = dataReader.GetValue(11).ToString();
+                ReturnRecord.ScreenImg = Convert.ToInt32(dataReader.GetValue(12));
+                ReturnRecord.show = Convert.ToInt32(dataReader.GetValue(13));
+                
+            }
+            dataReader.Close();
+            command.Dispose();
+            connection.Close();
+            return ReturnRecord;
+        }
+        // DetailUpdate
+        public void DetailUpdate(int id, int id_subcat, string title, string subtitle, string desc1, string desc2, string img1, string img2,
+            string img3, string img4, string img5, int screenImg, int show)
+        {
+            sql = "update Detail set id_subcat= @id_subcat, title=@title,subtitle = @subtitle,desc1 = @desc1,desc2 = @desc2,img1 = @img1, " +
+                " img2 = @img2,img3 = @img3,img4 = @img4,img5 = @img5,screenImg = @screenImg,show = @show where id = @id ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+            command.Parameters.Add(new SqlParameter("id", id));
+            command.Parameters.Add(new SqlParameter("id_subcat", id_subcat));
+            command.Parameters.Add(new SqlParameter("title", title));
+            command.Parameters.Add(new SqlParameter("subtitle", subtitle));
+            command.Parameters.Add(new SqlParameter("desc1", desc1));
+            command.Parameters.Add(new SqlParameter("desc2", desc2));
+            command.Parameters.Add(new SqlParameter("img1", img1));
+            command.Parameters.Add(new SqlParameter("img2", img2));
+            command.Parameters.Add(new SqlParameter("img3", img3));
+            command.Parameters.Add(new SqlParameter("img4", img4));
+            command.Parameters.Add(new SqlParameter("img5", img5));
+            command.Parameters.Add(new SqlParameter("screenImg", screenImg));
+            command.Parameters.Add(new SqlParameter("show", show));
+            command.ExecuteNonQuery();
+            command.Dispose();
+            connection.Close();
+        }
+        public void DetailDelete(int id)
+        {
+            sql = "delete from Detail where id = @id ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+            command.Parameters.Add(new SqlParameter("id", id));
+            command.ExecuteNonQuery();
+            command.Dispose();
+            connection.Close();
         }
     }
 }

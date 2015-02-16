@@ -116,6 +116,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DetailObject.cs" />
     <Compile Include="edit_test.aspx.cs">
       <DependentUpon>edit_test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
