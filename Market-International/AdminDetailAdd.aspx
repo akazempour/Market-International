@@ -31,48 +31,48 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <label>Show:</label><asp:CheckBox ID="Show" runat="server" Checked="True" />
+    <label>Show:</label><asp:CheckBox ID="Show" runat="server" Checked="True" ToolTip="Checked: will be shown." />
 
     <br />
     <br />
-    <label>Title:</label><asp:TextBox ID="TitleText" runat="server"></asp:TextBox>
+    <label>Title:</label><asp:TextBox ID="TitleText" runat="server" ToolTip="Title"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red"  ControlToValidate="TitleText" ErrorMessage="***Title is require"></asp:RequiredFieldValidator>
     <br />
     <br />
-    <label>SubTitle:</label><asp:TextBox ID="SubTitleText" runat="server"></asp:TextBox>
+    <label>SubTitle:</label><asp:TextBox ID="SubTitleText" runat="server" ToolTip="Sub Title"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red"  ControlToValidate="SubTitleText" ErrorMessage="***Subtitle is require"></asp:RequiredFieldValidator>
 
     <br />
     <br />
-    <label>Desc1</label><asp:TextBox ID="Desc1Text" runat="server" Height="155px" TextMode="MultiLine" Width="399px"></asp:TextBox>
+    <label>Desc1</label><asp:TextBox ID="Desc1Text" runat="server" Height="155px" TextMode="MultiLine" Width="399px" ToolTip="Main Page and Detail page"></asp:TextBox>
     <br />
     <br />
-    <label>Desc2:</label><asp:TextBox ID="Desc2Text" Height="155px" Width="399px" runat="server" TextMode="MultiLine"></asp:TextBox>
+    <label>Desc2:</label><asp:TextBox ID="Desc2Text" Height="155px" Width="399px" runat="server" TextMode="MultiLine" ToolTip="Multi page or last page"></asp:TextBox>
     <br />
     <br />
-    <asp:RadioButton ID="Scroll" Text="Main Image Scroll" GroupName="PageControl" runat="server" />
+    <asp:RadioButton ID="Scroll" Text="Main Image Scroll" GroupName="PageControl" runat="server" ToolTip="First photo will be shown in scroll"/>
     <br />
-    <asp:RadioButton ID="MainPage" Text="Main page" GroupName="PageControl" runat="server" />
+    <asp:RadioButton ID="MainPage" Text="Main page" GroupName="PageControl" runat="server"  ToolTip="First photo will be shown in main page"/>
     <br />
-    <asp:RadioButton ID="DetailPage" Text="Page detail" GroupName="PageControl" runat="server"  Checked="true"/>
+    <asp:RadioButton ID="DetailPage" Text="Page detail" GroupName="PageControl" runat="server"  Checked="true" ToolTip="First photo will be shown in detail page"/>
     <br />
     <br />
     <br />
 
 
-    <label>Image1:</label><asp:Image ID="ImgPrv1" Height="155px" Width="399px" runat="server" /><br />
+    <label>Image1:</label><asp:Image ID="ImgPrv1" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356" /><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage1" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv1');" />
     <br /><br />
-    <label>Image2:</label><asp:Image ID="ImgPrv2" Height="155px" Width="399px" runat="server" /><br />
+    <label>Image2:</label><asp:Image ID="ImgPrv2" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356" /><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage2" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv2');" />
     <br /><br />
-    <label>Image3:</label><asp:Image ID="ImgPrv3" Height="155px" Width="399px" runat="server" /><br />
+    <label>Image3:</label><asp:Image ID="ImgPrv3" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356" /><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage3" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv3');" />
     <br /><br />
-    <label>Image4:</label><asp:Image ID="ImgPrv4" Height="155px" Width="399px" runat="server" /><br />
+    <label>Image4:</label><asp:Image ID="ImgPrv4" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356"/><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage4" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv4');" />
     <br /><br />
-    <label>Image5:</label><asp:Image ID="ImgPrv5" Height="155px" Width="399px" runat="server" /><br />
+    <label>Image5:</label><asp:Image ID="ImgPrv5" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356"/><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage5" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv5');" />
     <br /><br /><br />
     <asp:Button CssClass="leftassign" ID="Submit"  runat="server" Text="Upload" OnClick="Summit" />

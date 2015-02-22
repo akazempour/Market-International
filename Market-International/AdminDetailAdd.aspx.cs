@@ -14,7 +14,7 @@ namespace Market_International
         #region
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["admin"] != "admin_log")
+            if (Session["admin"] ==null)
                 Response.Redirect("./login_admin.aspx");
 
             if (!IsPostBack)

@@ -9,10 +9,7 @@
     <style> 
         .butt {
             font-size: x-large;
-            width:49%;
-            padding-bottom:20%;
-            padding-top:20%;
-            background-color:E9E9D6;
+            width:30%;
         }
 
             .butt:hover {
@@ -23,7 +20,7 @@
         .center {
             margin-left: auto;
             margin-right: auto;
-            width: 18%;
+            width: 30%;
         }
         body {
             background-color:#3f3f3f;

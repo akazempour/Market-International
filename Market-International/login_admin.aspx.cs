@@ -25,7 +25,7 @@ namespace Market_International
             if (sql_obj.admin_login(user, passwrd))
             {
                 Login_error.Visible = false;
-                Session["admin"] = "admin_log";
+                Session["admin"] = user;
                 Response.Redirect("./Admin_Home.aspx");
             }
             else

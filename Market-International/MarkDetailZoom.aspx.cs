@@ -7,18 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Market_International
 {
-    public partial class edit_test : System.Web.UI.Page
+    public partial class MarkDetailZoom : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-        }
-
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-            string test = TextBox1.Text;
-            test = test.Replace("\r\n", "</br>");
 
         }
-
     }
 }

@@ -58,27 +58,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminDetailAdd.aspx" />
+    <Content Include="AdminOffer.aspx" />
     <Content Include="Admin_Home.aspx" />
     <Content Include="Category.aspx" />
+    <Content Include="ClientRegister.aspx" />
     <Content Include="css\dataTables.colReorder.css" />
     <Content Include="css\site.css" />
     <Content Include="css\slider_style.css" />
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
-    <Content Include="edit_test.aspx" />
     <Content Include="Email.aspx" />
-    <Content Include="FileUpload.aspx" />
     <Content Include="js\adsbygoogle.js" />
     <Content Include="js\dataTables.colReorder.js" />
+    <Content Include="js\jquery.elevatezoom.min.js" />
+    <Content Include="js\jquery.min.js" />
     <Content Include="js\jquery.plugins.js" />
     <Content Include="js\jquery.site.js" />
     <Content Include="js\site.js" />
     <Content Include="js\slide_img.js" />
     <Content Include="login_admin.aspx" />
+    <Content Include="MarkDetailZoom.aspx" />
     <Content Include="market_zoom_one.aspx" />
     <Content Include="Mark_Detail.aspx" />
     <Content Include="Web.config" />
-    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.Master.cs">
@@ -95,6 +97,13 @@
     <Compile Include="AdminDetailAdd.aspx.designer.cs">
       <DependentUpon>AdminDetailAdd.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminOffer.aspx.cs">
+      <DependentUpon>AdminOffer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminOffer.aspx.designer.cs">
+      <DependentUpon>AdminOffer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin_Home.aspx.cs">
       <DependentUpon>Admin_Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -109,6 +118,15 @@
     <Compile Include="Category.aspx.designer.cs">
       <DependentUpon>Category.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CategoryMainObject.cs" />
+    <Compile Include="CategorySubObject.cs" />
+    <Compile Include="ClientRegister.aspx.cs">
+      <DependentUpon>ClientRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientRegister.aspx.designer.cs">
+      <DependentUpon>ClientRegister.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -117,13 +135,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="DetailObject.cs" />
-    <Compile Include="edit_test.aspx.cs">
-      <DependentUpon>edit_test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="edit_test.aspx.designer.cs">
-      <DependentUpon>edit_test.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Email.aspx.cs">
       <DependentUpon>Email.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -131,19 +142,19 @@
     <Compile Include="Email.aspx.designer.cs">
       <DependentUpon>Email.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FileUpload.aspx.cs">
-      <DependentUpon>FileUpload.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FileUpload.aspx.designer.cs">
-      <DependentUpon>FileUpload.aspx</DependentUpon>
-    </Compile>
     <Compile Include="login_admin.aspx.cs">
       <DependentUpon>login_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="login_admin.aspx.designer.cs">
       <DependentUpon>login_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarkDetailZoom.aspx.cs">
+      <DependentUpon>MarkDetailZoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarkDetailZoom.aspx.designer.cs">
+      <DependentUpon>MarkDetailZoom.aspx</DependentUpon>
     </Compile>
     <Compile Include="market_zoom_one.aspx.cs">
       <DependentUpon>market_zoom_one.aspx</DependentUpon>
@@ -168,13 +179,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sql_object.cs" />
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Mark_Int.Master" />

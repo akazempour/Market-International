@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
@@ -14,11 +15,13 @@ namespace Market_International
         SqlCommand command;
         string sql = null;
         SqlDataReader dataReader;
-
+        string admin_user = null;
         //initialized 
         private void initialize()
         {
             connetionString = "Data Source=SQL5006.Smarterasp.net;Initial Catalog=DB_9B7F5F_kaz;User Id=DB_9B7F5F_kaz_admin;Password=Admiral1;";
+            admin_user = System.Web.HttpContext.Current.Session["admin"] == null ? "" : System.Web.HttpContext.Current.Session["admin"].ToString();
+            
 
         }
 
@@ -81,13 +84,14 @@ namespace Market_International
         public void MainCatUpd(int id, string value, int show)
         {
             sql = "update Category_Main set Category= @Category, show=@show where id = @id ";
+
             initialize();
             connection = new SqlConnection(connetionString);
             connection.Open();
             command = new SqlCommand(sql, connection);
             command.Parameters.Add(new SqlParameter("id", id));
             command.Parameters.Add(new SqlParameter("Category", value));
-            command.Parameters.Add(new SqlParameter("show", show));
+            command.Parameters.Add(new SqlParameter("show", show));            
             command.ExecuteNonQuery();
             command.Dispose();
             connection.Close();
@@ -95,13 +99,14 @@ namespace Market_International
         //Add Main Category
         public void MainCatAdd(string value, int show)
         {
-            sql = "insert into Category_Main (Category,show) values(@value,@show) ";
             initialize();
+            sql = "insert into Category_Main (Category,show,admin_user) values(@value,@show,@admin_user) ";
             connection = new SqlConnection(connetionString);
             connection.Open();
             command = new SqlCommand(sql, connection);
             command.Parameters.Add(new SqlParameter("value", value));
             command.Parameters.Add(new SqlParameter("show", show));
+            command.Parameters.Add(new SqlParameter("admin_user", admin_user));
             command.ExecuteNonQuery();
             command.Dispose();
             connection.Close();
@@ -154,14 +159,16 @@ namespace Market_International
         // Sub Category Add
         public void SubCatAdd(int id_category, string Cat_sub, int show)
         {
-            sql = "insert into Category_Sub (id_category,Cat_sub,show) values(@id_category,@Cat_sub,@show) ";
+
             initialize();
+            sql = "insert into Category_Sub (id_category,Cat_sub,show,admin_user) values(@id_category,@Cat_sub,@show,@admin_user) ";
             connection = new SqlConnection(connetionString);
             connection.Open();
             command = new SqlCommand(sql, connection);
             command.Parameters.Add(new SqlParameter("id_category", id_category));
             command.Parameters.Add(new SqlParameter("Cat_sub", Cat_sub));
             command.Parameters.Add(new SqlParameter("show", show));
+            command.Parameters.Add(new SqlParameter("admin_user", admin_user));
             command.ExecuteNonQuery();
             command.Dispose();
             connection.Close();
@@ -169,12 +176,19 @@ namespace Market_International
         //Get First Category 
         public int GetFirstCat()
         {
-            int lreturn = 0;
-            sql = "select Top 1 id from dbo.Category_Main order by Category";
             initialize();
+            int lreturn = 0;
+            if (admin_user == "admin")
+                sql = "select Top 1 id from dbo.Category_Main order by Category";
+            else
+                sql = "select Top 1 id from dbo.Category_Main where admin_user = @admin_user order by Category";
+
             connection = new SqlConnection(connetionString);
             connection.Open();
             command = new SqlCommand(sql, connection);
+            if (admin_user != "admin")
+                command.Parameters.Add(new SqlParameter("admin_user", admin_user));
+
             dataReader = command.ExecuteReader();
             if (dataReader.Read())
             {
@@ -249,23 +263,37 @@ namespace Market_International
         //drop down category main
         public SqlDataReader get_category_query()
         {
-            sql = "select id,Category from category_main order by Category ";
             initialize();
+            if (admin_user == "admin")
+                sql = "select id,Category from category_main order by Category ";
+            else
+                sql = "select id,Category from category_main where admin_user = @admin_user order by Category  ";
+
             connection = new SqlConnection(connetionString);
             connection.Open();
             command = new SqlCommand(sql, connection);
+            if (admin_user != "admin")
+                command.Parameters.Add(new SqlParameter("admin_user", admin_user));
+
             SqlDataReader dataReader = command.ExecuteReader();
             return dataReader;
         }
         // drop down subcategory
         public SqlDataReader get_sub_cat_query(int IdCatLoc)
         {
-            sql = "select id,Cat_sub from Category_Sub where id_category = @IdCatLoc order by Cat_sub  ";
             initialize();
+            if (admin_user == "admin")
+                sql = "select id,Cat_sub from Category_Sub where id_category = @IdCatLoc order by Cat_sub  ";
+            else
+                sql = "select id,Cat_sub from Category_Sub where id_category = @IdCatLoc and admin_user = @admin_user order by Cat_sub  ";
+
             connection = new SqlConnection(connetionString);
             connection.Open();
             command = new SqlCommand(sql, connection);
             command.Parameters.Add(new SqlParameter("IdCatLoc", IdCatLoc));
+            if (admin_user != "admin")
+                command.Parameters.Add(new SqlParameter("admin_user", admin_user));
+
             SqlDataReader dataReader = command.ExecuteReader();
             return dataReader;
         }
@@ -285,8 +313,8 @@ namespace Market_International
         public void DetailAdd(int id_subcat, string Title, string SubTitle, string Desc1, string Desc2, string img1, string img2,
             string img3, string img4, string img5, int ScreenImg, int show)
         {
-            sql = @"insert into Detail (id_subcat, Title, SubTitle,Desc1,Desc2,img1,img2,img3,img4,img5,ScreenImg,show) values " +
-                "(@id_subcat, @Title, @SubTitle,@Desc1,@Desc2,@img1,@img2,@img3,@img4,@img5,@ScreenImg,@show)";
+            sql = @"insert into Detail (id_subcat, Title, SubTitle,Desc1,Desc2,img1,img2,img3,img4,img5,ScreenImg,show,admin_user) values " +
+                "(@id_subcat, @Title, @SubTitle,@Desc1,@Desc2,@img1,@img2,@img3,@img4,@img5,@ScreenImg,@show,@admin_user)";
             initialize();
             connection = new SqlConnection(connetionString);
             connection.Open();
@@ -309,6 +337,8 @@ namespace Market_International
             command.Parameters.Add(new SqlParameter("img5", img5));
             command.Parameters.Add(new SqlParameter("ScreenImg", ScreenImg));
             command.Parameters.Add(new SqlParameter("show", show));
+            command.Parameters.Add(new SqlParameter("admin_user", admin_user));
+
 
 
             command.ExecuteNonQuery();
@@ -433,5 +463,168 @@ namespace Market_International
             command.Dispose();
             connection.Close();
         }
+        public List<CategoryMainObject> GetCategoryMain()
+        {
+
+            List<CategoryMainObject> ReturnObject = new List<CategoryMainObject>();
+
+            sql = "select id,Category from Category_Main where show = 1 order by Category ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+
+
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                CategoryMainObject ReturnRecord = new CategoryMainObject();
+                ReturnRecord.id = Convert.ToInt32(dataReader.GetValue(0));
+                ReturnRecord.Category = dataReader.GetValue(1).ToString();
+                ReturnObject.Add(ReturnRecord);
+            }
+            dataReader.Close();
+            command.Dispose();
+            connection.Close();
+            return ReturnObject;
+
+
+        }
+
+
+        public List<CategorySubObject> GetCategorySub(int id_category)
+        {
+
+            List<CategorySubObject> ReturnObject = new List<CategorySubObject>();
+
+            sql = "select id,id_category,Cat_sub from Category_Sub where show = 1 and id_category = @id_category";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+            command.Parameters.Add(new SqlParameter("id_category", id_category));
+
+
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                CategorySubObject ReturnRecord = new CategorySubObject();  
+                ReturnRecord.id = Convert.ToInt32(dataReader.GetValue(0));
+                ReturnRecord.id_category =  Convert.ToInt32(dataReader.GetValue(1));
+                ReturnRecord.Cat_sub = dataReader.GetValue(2).ToString();
+                ReturnObject.Add(ReturnRecord);
+            }
+            dataReader.Close();
+            command.Dispose();
+            connection.Close();
+            return ReturnObject;
+
+
+        }
+
+        public List<DetailObject> GetDetailScroll()
+        {
+            List<DetailObject> ReturnObject = new List<DetailObject>();
+
+            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show from Detail  where ScreenImg = 1 and show = 1 order by title ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+
+
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                DetailObject ReturnRecord = new DetailObject();
+
+                ReturnRecord.id = Convert.ToInt32(dataReader.GetValue(0));
+                ReturnRecord.id_subcat = Convert.ToInt32(dataReader.GetValue(1));
+                ReturnRecord.title = dataReader.GetValue(2).ToString();
+                ReturnRecord.subtitle = dataReader.GetValue(3).ToString();
+                ReturnRecord.Desc1 = dataReader.GetValue(4).ToString();
+                ReturnRecord.Desc2 = dataReader.GetValue(5).ToString();
+                ReturnRecord.created = Convert.ToDateTime(dataReader.GetValue(6));
+                ReturnRecord.img1 = dataReader.GetValue(7).ToString();
+                ReturnRecord.img2 = dataReader.GetValue(8).ToString();
+                ReturnRecord.img3 = dataReader.GetValue(9).ToString();
+                ReturnRecord.img4 = dataReader.GetValue(10).ToString();
+                ReturnRecord.img5 = dataReader.GetValue(11).ToString();
+                ReturnRecord.ScreenImg = Convert.ToInt32(dataReader.GetValue(12));
+                ReturnRecord.show = Convert.ToInt32(dataReader.GetValue(13));
+                ReturnObject.Add(ReturnRecord);
+            }
+            dataReader.Close();
+            command.Dispose();
+            connection.Close();
+            return ReturnObject;
+        }
+
+        public List<DetailObject> GetDetailMain()
+        {
+            List<DetailObject> ReturnObject = new List<DetailObject>();
+
+            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show from Detail  where ScreenImg = 2 and show = 1 order by title ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+
+
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                DetailObject ReturnRecord = new DetailObject();
+
+                ReturnRecord.id = Convert.ToInt32(dataReader.GetValue(0));
+                ReturnRecord.id_subcat = Convert.ToInt32(dataReader.GetValue(1));
+                ReturnRecord.title = dataReader.GetValue(2).ToString();
+                ReturnRecord.subtitle = dataReader.GetValue(3).ToString();
+                ReturnRecord.Desc1 = dataReader.GetValue(4).ToString();
+                ReturnRecord.Desc2 = dataReader.GetValue(5).ToString();
+                ReturnRecord.created = Convert.ToDateTime(dataReader.GetValue(6));
+                ReturnRecord.img1 = dataReader.GetValue(7).ToString();
+                ReturnRecord.img2 = dataReader.GetValue(8).ToString();
+                ReturnRecord.img3 = dataReader.GetValue(9).ToString();
+                ReturnRecord.img4 = dataReader.GetValue(10).ToString();
+                ReturnRecord.img5 = dataReader.GetValue(11).ToString();
+                ReturnRecord.ScreenImg = Convert.ToInt32(dataReader.GetValue(12));
+                ReturnRecord.show = Convert.ToInt32(dataReader.GetValue(13));
+                ReturnObject.Add(ReturnRecord);
+            }
+            dataReader.Close();
+            command.Dispose();
+            connection.Close();
+            return ReturnObject;
+        }
+
+        public DataTable get_offer_query()
+        {
+            DataTable table = new DataTable(); 
+
+            sql = "select id,customer_id,offer from offer ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+            SqlDataReader dataReader = command.ExecuteReader();
+            table.Load(dataReader);
+            return table;
+        }
+        public void ClientAdd(string value, int show)
+        {
+            sql = "insert into Category_Main (Category,show) values(@value,@show) ";
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+            command.Parameters.Add(new SqlParameter("value", value));
+            command.Parameters.Add(new SqlParameter("show", show));
+            command.ExecuteNonQuery();
+            command.Dispose();
+            connection.Close();
+        }
+
+
     }
 }

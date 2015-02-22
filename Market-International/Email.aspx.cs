@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 
 namespace Market_International
 {
@@ -14,14 +16,13 @@ namespace Market_International
         {
 
 
-
+            string content = File.ReadAllText(Server.MapPath("~/img/Email2.html"));
             System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-            mail.To.Add("akazempour@hotmail.com");
-            mail.CC.Add("arsalan_kazempour@yahoo.com");
+            mail.To.Add("akazempour@hotmail.com,arsalan_kazempour@yahoo.com");
             mail.From = new MailAddress("info@market-international.com", "Amir kazempour", System.Text.Encoding.UTF8);
             mail.Subject = "This mail is send from asp.net application";
             mail.SubjectEncoding = System.Text.Encoding.UTF8;
-            mail.Body = "This is Email Body Text </br> second line";
+            mail.Body = content;
             mail.BodyEncoding = System.Text.Encoding.UTF8;
             mail.IsBodyHtml = true;
             mail.Priority = MailPriority.High;

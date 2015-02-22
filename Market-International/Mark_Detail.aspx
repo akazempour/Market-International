@@ -6,61 +6,46 @@
     </br></br></br></br>
     <div>
         <div class="div_color">
-            <div class="box2">
-                <a target="_blank" href="klematis4_big.htm">
-                    <img class="image_size" src="img/thumb-09.jpg" alt="Klematis">
-                </a>
-                <br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label>
-            </div>
-
-            <div class="box2">
-                <a target="_blank" href="klematis4_big.htm">
-                    <img class="image_size" src="img/08.jpg" alt="Klematis">
-                </a>
-                <br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label>
-
-            </div>
-        </div>
-        </br>
-        <div class="div_color">
-            <div class="box2">
-                <a target="_blank" href="klematis4_big.htm">
-                    <img class="image_size" src="img/09.jpg" alt="Klematis">
-                </a>
-                <br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-            </div>
-
-            <div class="box2">
-                <a target="_blank" href="klematis4_big.htm">
-                    <img class="image_size" src="img/08.jpg" alt="Klematis">
-                </a>
-                <br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label>
-
-            </div>
+            <%
+                int counter = 0;
+                string Detail = null;
+                int subid = Convert.ToInt32(Request["subcat"]);
+                Market_International.sql_object SqlObj = new Market_International.sql_object();
+                List<Market_International.DetailObject> DetailObj = SqlObj.GetDetail(subid);
+                foreach (Market_International.DetailObject item in DetailObj)
+                {
+                    if (item.ScreenImg == 3)
+                    {
+                        counter++;
+                        Response.Write("<div class=\"box2\">");
+                        Response.Write("<a target=\"_blank\" href=\"/MarkDetailZoom.aspx?id=" + item.id + "\">");
+                        Response.Write("<img class=\"image_size\" src=\"image/"+item.img1 + "\" >");
+                        Response.Write("</a>");
+                        Response.Write("<br>");
+                        Response.Write("<label style=\"font-size: xx-large;\" >" + item.title + "</label><br>");
+                        Response.Write("<label style=\"font-size: x-large;\">" + item.subtitle + "</label>");
+                        Response.Write("<br>");
+                        Detail = item.Desc1.Replace("\r\n", "<br>");
+                        
+                        Response.Write("<label>" + Detail + "</label>");
+                        Response.Write("</div>");
+                        if (counter == 2)
+                        {
+                            Response.Write("</div>");
+                            Response.Write("</br>");
+                            counter = 0;
+                        }
+                    }
+                }
+                if (counter != 0)
+                {
+                    Response.Write("</div>");
+                    Response.Write("</br>");
+                }
+                
+            %>
         </div>
 
 
-    </div>
-    <div>
-        <h1>this is a test</h1>
-    </div>
-
-
-    </br>
-    <div id="maincon">
-        <h1 align="center">These sites are onder </h1>
-        <h1 align="center">aaaaaaaaaaaaaaaaaaaaaa</h1>
-    </div>
-
+        <br />
 </asp:Content>

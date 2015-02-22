@@ -76,6 +76,23 @@
                 body, table {
                     background-color: #3f3f3f !important;
                 }
+
+                .menu{
+                    padding-left:3%;
+                    padding-right:3%;
+                    background-color:white;
+                    color: #ff8400;
+                    text-decoration: none;
+                    text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+	                font: 40px 'ChunkFiveRegular';
+                    width:18%;
+
+                }
+
+                .menu:hover { 
+                    background-color:#B3C077;
+                    color: white;
+                }
             </style>
 
             <div id="shadoe_div">
@@ -83,6 +100,14 @@
                 <h1 id="three-d" align="center">MARKET INTERNATIONAL</h1>
             </div>
             </br></br></br>
+            <div  style="text-align:center">
+                <a  class="menu" href="./Default.aspx">Home</a>
+                <a  class="menu" href="http://www.hotmail.com">Login</a>
+                <a  class="menu" href="http://www.hotmail.com">Register</a>
+                <a  class="menu" href="http://www.hotmail.com">Who we are</a>
+                <br /><br />
+            </div>
+
         <table style="width: 100%">
             <tr>
 
@@ -95,34 +120,24 @@
                             <div class="col-main float-left">
                                 <div class="content-block" style="padding: 20px 0;">
                                     <ul id="nav">
-                                        <li><a href="#">Item 1</a>
-                                            <ul>
-                                                <li><a href="">Sub-Item 1 a</a></li>
-                                                <li><a href="#">Sub-Item 1 b</a></li>
-                                                <li><a href="#">Sub-Item 1 c</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Item 2</a>
-                                            <ul>
-                                                <li><a href="#">Sub-Item 2 a</a></li>
-                                                <li><a href="#">Sub-Item 2 b</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Item 3</a>
-                                            <ul>
-                                                <li><a href="#">Sub-Item 3 a</a></li>
-                                                <li><a href="#">Sub-Item 3 b</a></li>
-                                                <li><a href="#">Sub-Item 3 c</a></li>
-                                                <li><a href="#">Sub-Item 3 d</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Item 4</a>
-                                            <ul>
-                                                <li><a href="#">Sub-Item 4 a</a></li>
-                                                <li><a href="#">Sub-Item 4 b</a></li>
-                                                <li><a href="#">Sub-Item 4 c</a></li>
-                                            </ul>
-                                        </li>
+                                        <% 
+                                            Market_International.sql_object SqlObj = new Market_International.sql_object();
+                                            List<Market_International.CategoryMainObject> CategoryMainObj = SqlObj.GetCategoryMain();
+
+                                            foreach (Market_International.CategoryMainObject item in CategoryMainObj)
+                                            {
+                                                Response.Write("<li><a href=\"#\">" +  item.Category + "</a>");
+                                                Response.Write("<ul>");
+                                                List<Market_International.CategorySubObject> CategorySubObject = SqlObj.GetCategorySub(item.id);
+                                                foreach (Market_International.CategorySubObject itemsub in CategorySubObject)
+                                                {
+                                                    Response.Write("<li><a href=\"./Mark_Detail.aspx?subcat=" + itemsub.id + "\">" + itemsub.Cat_sub + "</a></li>");
+                                                }
+                                                Response.Write("</ul>");
+                                                Response.Write("</li>");
+                                            }
+                                            %>
+
                                     </ul>
 
                                 </div>

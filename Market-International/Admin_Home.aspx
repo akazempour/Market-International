@@ -100,7 +100,7 @@
 <tbody>
 
 <%
-    int sub = Convert.ToInt32(sub_category.Text);
+    int sub = sub_category.Text=="" ? 0: Convert.ToInt32(sub_category.Text);
     Market_International.sql_object Sql_Obj = new Market_International.sql_object();
     List<Market_International.DetailObject> DetailRecord = Sql_Obj.GetDetail(sub);
     string Desc1 = null;

@@ -13,54 +13,20 @@
             </div>
         </div>
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 356px; overflow: hidden;">
-            <div>
-                <img u="image" src="img/01.jpg">
-                <img u="thumb" src="img/thumb-01.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/02.jpg">
-                <img u="thumb" src="img/thumb-02.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/03.jpg">
-                <img u="thumb" src="img/thumb-03.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/04.jpg">
-                <img u="thumb" src="img/thumb-04.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/05.jpg">
-                <img u="thumb" src="img/thumb-05.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/06.jpg">
-                <img u="thumb" src="img/thumb-06.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/07.jpg">
-                <img u="thumb" src="img/thumb-07.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/08.jpg">
-                <img u="thumb" src="img/thumb-08.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/09.jpg">
-                <img u="thumb" src="img/thumb-09.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/10.jpg">
-                <img u="thumb" src="img/thumb-10.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/11.jpg">
-                <img u="thumb" src="img/thumb-11.jpg">
-            </div>
-            <div>
-                <img u="image" src="img/12.jpg">
-                <img u="thumb" src="img/thumb-12.jpg">
-            </div>
+            <%
+                Market_International.sql_object SqlObj = new Market_International.sql_object();
+                List<Market_International.DetailObject> DetailObj = SqlObj.GetDetailScroll();
+                foreach (Market_International.DetailObject item in DetailObj)                    
+                {
+                    Response.Write("<div>");
+                    Response.Write("<a href=\"/MarkDetailZoom.aspx?id=" + item.id + "\"> <img u=\"image\" src=\"image/" + item.img1 + "\"> </a>");
+                    Response.Write("<img u=\"thumb\" src=\"image/"+item.img1+ "\"  style=\"width:68px; height:68px;\">");
+                    Response.Write("</div>");
+                }
+                
+                 %>
+
+
         </div>
         <span u="arrowleft" class="jssora05l" style="width: 40px; height: 40px; top: 158px; left: 8px;"></span>
         <span u="arrowright" class="jssora05r" style="width: 40px; height: 40px; top: 158px; right: 8px"></span>
@@ -81,60 +47,52 @@
     </div>
     </br></br></br></br>
     <div>
-
-        <div class="div_color">
-            <div class="box2">
-                <a target="_blank" href="klematis4_big.htm">
-                    <img class="image_size" src="img/09.jpg" alt="Klematis">
-                </a>
-                <br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label>
-            </div>
-
-            <div class="box2">
-                <a target="_blank" href="klematis4_big.htm">
-                    <img class="image_size" src="img/08.jpg" alt="Klematis">
-                </a>
-                <br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label>
-
-            </div>
-        </div>
-        </br>
-        <div class="div_color">
-            <div class="box2">
-                <a target="_blank" href="klematis4_big.htm">
-                    <img class="image_size" src="img/09.jpg" alt="Klematis">
-                </a>
-                <br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label>
-            </div>
+        <%
+            List<Market_International.DetailObject> DetailMain = SqlObj.GetDetailMain();
+            int counter = 0;
+            string Detail = null;
+            foreach (var item in DetailMain)
+            {
+                Detail = item.Desc1.Replace("\r\n", "<br>");
+                if (counter==0)
+                    Response.Write("<div class=\"div_color\">");             
+             %>
 
             <div class="box2">
-                <a target="_blank" href="klematis4_big.htm">
-                    <img class="image_size" src="img/08.jpg" alt="Klematis">
+                <a target="_blank" href=<%="/MarkDetailZoom.aspx?id="+ item.id %>  >
+                    <img class="image_size" src=<%="image/" + item.img1 %> alt="Klematis">
                 </a>
                 <br>
-                <label>aaaaaaaaaaaaaaaaaa</label><br>
-                <label>aaaaaaaaaaaaaaaaaa</label>
-
+                <label><%=Detail %></label><br>
             </div>
-        </div>
+
+
+
+        <%
+                counter++;
+                if(counter==2)
+                {
+                    Response.Write("</div>");
+                    Response.Write("<br>");
+                    counter = 0;
+                }   
+        }
+        
+                if(counter != 0)
+                {
+                    Response.Write("</div>");
+                    Response.Write("<br>");                    
+                }
+        
+        
+        
+             %>
+
+
 
 
     </div>
-    <div>
-        <h1>this is a test</h1>
-    </div>
 
 
-    </br>
-    <div id="maincon">
-        <h1 align="center">These sites are onder </h1>
-        <h1 align="center">aaaaaaaaaaaaaaaaaaaaaa</h1>
-    </div>
 
 </asp:Content>
