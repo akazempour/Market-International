@@ -19,7 +19,8 @@
                 foreach (Market_International.DetailObject item in DetailObj)                    
                 {
                     Response.Write("<div>");
-                    Response.Write("<a href=\"/MarkDetailZoom.aspx?id=" + item.id + "\"> <img u=\"image\" src=\"image/" + item.img1 + "\"> </a>");
+                    Response.Write("<a href=\"/MarkDetailZoom.aspx?id=" + item.id + "\"> <img u=\"image\" src=\"image/"
+                    + item.img1 + "\"  \"  style=\"width:800px; height:356px;\"  > </a>");
                     Response.Write("<img u=\"thumb\" src=\"image/"+item.img1+ "\"  style=\"width:68px; height:68px;\">");
                     Response.Write("</div>");
                 }
@@ -43,6 +44,42 @@
         </div>
         <script>
             jssor_slider1_starter('slider1_container');
+
+            // Validate 
+            function validate(id)
+            {
+                var labelid = "label" + id; 
+                var FieldValidate = document.getElementById(id).value;
+                if (FieldValidate == "")
+                {
+                    document.getElementById(labelid).style.visibility = "visible";
+                    document.getElementById(labelid).innerHTML = "Please enter your offer.";
+                    return;
+                }
+                if (isNaN(FieldValidate))
+                {
+                    document.getElementById(labelid).style.visibility = "visible";
+                    document.getElementById(labelid).innerHTML = "Please enter numeric value.";
+                    return; 
+                }
+                var n = FieldValidate.indexOf(".");
+                if (n>0)
+                {
+                    document.getElementById(labelid).style.visibility = "visible";
+                    document.getElementById(labelid).innerHTML = "Decimal point is not allowed.";
+                    return;
+                }
+
+                n = FieldValidate.indexOf(",");
+                if (n > 0) {
+                    document.getElementById(labelid).style.visibility = "visible";
+                    document.getElementById(labelid).innerHTML = "Decimal point is not allowed.";
+                    return;
+                }
+                document.getElementById('OfferId').value = id;
+                $("#form1").submit();
+
+            }
         </script>
     </div>
     </br></br></br></br>
@@ -64,9 +101,20 @@
                 </a>
                 <br>
                 <label><%=Detail %></label><br>
+                <%
+                string offer = ""; 
+                if (item.offer==1)
+                {
+                    offer = "<label>Offer:</label> <input type=\"text\" Title=\"Please round up your offer.\"  name=\"" + item.id + "\" id=\"" + item.id + "\"><br /> " +
+                    "<input type=\"button\"  value=\"Submit\" onclick=\" validate('" + item.id + "');\">" +
+                    "<label id=\"label" + item.id + "\" style=\"color:red; visibility:hidden;\"></label>" ;
+                    Response.Write(offer);
+                }
+                     %>
+                
+                <br />
             </div>
-
-
+        
 
         <%
                 counter++;
@@ -93,6 +141,7 @@
 
     </div>
 
-
+<input  type="hidden" name="OfferId" id="OfferId" value="Submit" >
+    
 
 </asp:Content>

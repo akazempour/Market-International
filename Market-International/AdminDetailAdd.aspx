@@ -57,6 +57,11 @@
     <asp:RadioButton ID="DetailPage" Text="Page detail" GroupName="PageControl" runat="server"  Checked="true" ToolTip="First photo will be shown in detail page"/>
     <br />
     <br />
+    <asp:RadioButton ID="DetailOffer" GroupName="PageOffer" Text="Offer" runat="server" Checked="True" /><br />
+    <asp:RadioButton ID="Detailorder" GroupName="PageOffer" Text="Order" runat="server" /><br />
+
+    <br />
+    <br />
     <br />
 
 

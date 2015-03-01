@@ -21,5 +21,6 @@ namespace Market_International
         public string img5 { get; set; }
         public int ScreenImg { get; set; }
         public int show { get; set; }
+        public int offer { get; set; }
     }
 }

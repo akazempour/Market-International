@@ -19,35 +19,40 @@
     if(DetailObj.img1 != "")
     {
        Response.Write("<div class=\"zoom-left\">");
-       Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_01\" src=\"image/" + DetailObj.img1+  "\" data-zoom-image=\"image/" + DetailObj.img1 + "\" width=\"700\">");
+       Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_01\" src=\"image/" + 
+       DetailObj.img1+  "\" data-zoom-image=\"image/" + DetailObj.img1 + "\" width=\"411px\" height=\"274px\" >");
        Response.Write("</div>");        
     }
 
     if (DetailObj.img2 != "")
     {
         Response.Write("<div class=\"zoom-left\">");
-        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_02\" src=\"image/"+DetailObj.img2+"\" data-zoom-image=\"image/" + DetailObj.img2 + "\" width=\"700\">");
+        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_02\" src=\"image/"+DetailObj.img2+"\" data-zoom-image=\"image/" +
+            DetailObj.img2 + "\" width=\"411px\" height=\"274px\" >");
         Response.Write("</div>");
     }
 
     if (DetailObj.img3 != "")
     {
         Response.Write("<div class=\"zoom-left\">");
-        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_03\" src=\"image/" + DetailObj.img3 + "\" data-zoom-image=\"image/" + DetailObj.img3 + "\" width=\"700\">");
+        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_03\" src=\"image/" + DetailObj.img3 +
+            "\" data-zoom-image=\"image/" + DetailObj.img3 + "\" width=\"411px\" height=\"274px\" >");
         Response.Write("</div>");
     }
 
     if (DetailObj.img4 != "")
     {
         Response.Write("<div class=\"zoom-left\">");
-        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_04\" src=\"image/" + DetailObj.img4 + "\" data-zoom-image=\"image/" + DetailObj.img4 + "\" width=\"700\">");
+        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_04\" src=\"image/" + DetailObj.img4 +
+            "\" data-zoom-image=\"image/" + DetailObj.img4 + "\" width=\"411px\" height=\"274px\" >");
         Response.Write("</div>");
     }
 
     if (DetailObj.img5 != "")
     {
         Response.Write("<div class=\"zoom-left\">");
-        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_05\" src=\"image/" + DetailObj.img5 + "\" data-zoom-image=\"image/" + DetailObj.img5 + "\" width=\"700\">");
+        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_05\" src=\"image/" + DetailObj.img5 +
+        "\" data-zoom-image=\"image/" + DetailObj.img5 + "\" width=\"411px\" height=\"274px\" >");
         Response.Write("</div>");
     }
 

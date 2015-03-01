@@ -61,7 +61,9 @@
     <Content Include="AdminOffer.aspx" />
     <Content Include="Admin_Home.aspx" />
     <Content Include="Category.aspx" />
+    <Content Include="ClientEmailValid.aspx" />
     <Content Include="ClientRegister.aspx" />
+    <Content Include="Contact.aspx" />
     <Content Include="css\dataTables.colReorder.css" />
     <Content Include="css\site.css" />
     <Content Include="css\slider_style.css" />
@@ -80,7 +82,10 @@
     <Content Include="MarkDetailZoom.aspx" />
     <Content Include="market_zoom_one.aspx" />
     <Content Include="Mark_Detail.aspx" />
+    <Content Include="OfferRegister.aspx" />
+    <Content Include="test.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.Master.cs">
@@ -120,12 +125,26 @@
     </Compile>
     <Compile Include="CategoryMainObject.cs" />
     <Compile Include="CategorySubObject.cs" />
+    <Compile Include="ClientEmailValid.aspx.cs">
+      <DependentUpon>ClientEmailValid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientEmailValid.aspx.designer.cs">
+      <DependentUpon>ClientEmailValid.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ClientRegister.aspx.cs">
       <DependentUpon>ClientRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ClientRegister.aspx.designer.cs">
       <DependentUpon>ClientRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -177,8 +196,29 @@
     <Compile Include="Mark_Int.Master.designer.cs">
       <DependentUpon>Mark_Int.Master</DependentUpon>
     </Compile>
+    <Compile Include="OfferRegister.aspx.cs">
+      <DependentUpon>OfferRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfferRegister.aspx.designer.cs">
+      <DependentUpon>OfferRegister.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sql_object.cs" />
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Mark_Int.Master" />
