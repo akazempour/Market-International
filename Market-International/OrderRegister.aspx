@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mark_Int.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Market_International.Contact" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mark_Int.Master" AutoEventWireup="true" CodeBehind="OrderRegister.aspx.cs" Inherits="Market_International.OrderRegister" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <style>
         .Contact_text{
@@ -17,14 +16,22 @@
             margin-left:15%;
         }
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-            <asp:Label ID="EmailErr" runat="server" CssClass="Button_Allign" ForeColor="Red" Font-Size="XX-Large" Visible="False"></asp:Label>
+        <asp:Label ID="EmailErr" runat="server" CssClass="Button_Allign" ForeColor="Red" Font-Size="XX-Large" Visible="False"></asp:Label>
     <br /><br /><br />
     <div class="div_set">
+        <label >Please validate your order.</label><br /><br />
         <label >You will be contacted by email.</label><br /><br />
     </div>
     <br />
+    <label class="Contact_text">Article number:</label>
+    <asp:TextBox ID="itemnum" runat="server"></asp:TextBox><br /><br />
+    <label class="Contact_text">Product:</label>
+    <asp:TextBox ID="Item" runat="server"></asp:TextBox><br /><br />
+    <label class="Contact_text">Price:</label>
+    <asp:TextBox ID="Order" runat="server" Enabled="False"></asp:TextBox>
         <br /><br />
     <asp:Label ID="Labelfname"  CssClass="Contact_text" runat="server" Text="First Name:"></asp:Label>
     <asp:TextBox ID="FirstName" runat="server" Width="30%"></asp:TextBox>
@@ -34,6 +41,8 @@
     <asp:TextBox ID="LastName" runat="server" Width="30%"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator2"  ForeColor="Red" ControlToValidate="LastName" runat="server" ErrorMessage="***Last name is required."></asp:RequiredFieldValidator>
     <br /><br />
+    <asp:Label ID="Labeladd" CssClass="Contact_text" runat="server" Text="Address:"></asp:Label>
+    <asp:TextBox ID="Address" runat="server" Width="30%"  Height="50px" TextMode="MultiLine" ></asp:TextBox><br /><br />
     <asp:Label ID="LabelEmail"  CssClass="Contact_text" runat="server" Text="Email:"></asp:Label>
     <asp:TextBox ID="Email" runat="server" Width="30%"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator3"  ForeColor="Red" ControlToValidate="Email" runat="server" ErrorMessage="***Email is required."></asp:RequiredFieldValidator>
@@ -48,14 +57,14 @@
     <asp:RadioButton ID="Male" runat="server" GroupName="gender"  Checked="true"/><br />
     <asp:Label ID="Label2"  CssClass="Contact_text" runat="server" Text="Female:"></asp:Label>
     <asp:RadioButton ID="Female" runat="server" GroupName="gender"  /><br /><br />
-    <asp:Label ID="Label3" CssClass="Contact_text" runat="server" Text="Note:">  </asp:Label>
-    <asp:TextBox ID="Note" runat="server" Width="30%"  Height="50px" TextMode="MultiLine" ></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator5"  ForeColor="Red" ControlToValidate="Note" runat="server" ErrorMessage="***Note is required."></asp:RequiredFieldValidator>
-    <br /><br />
+    <asp:Label ID="Label3" CssClass="Contact_text" runat="server" Text="Note:"></asp:Label>
+    <asp:TextBox ID="Note" runat="server" Width="30%"  Height="50px" TextMode="MultiLine" ></asp:TextBox><br /><br />
 
+    <br /><br />
     
     <asp:Button ID="Ok" runat="server" CssClass="Button_Allign" Text="Ok" Width="10%" OnClick="Ok_Click" />
     <asp:Button   ID="Cancel" runat="server" Text="Cancel" Width="10%" CausesValidation="False" OnClick="Cancel_Click" />
     <asp:HiddenField ID="Fieldid" runat="server" />
 
+    
 </asp:Content>

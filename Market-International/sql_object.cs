@@ -311,10 +311,10 @@ namespace Market_International
         }
         //add Detail
         public void DetailAdd(int id_subcat, string Title, string SubTitle, string Desc1, string Desc2, string img1, string img2,
-            string img3, string img4, string img5, int ScreenImg, int show,int offer)
+            string img3, string img4, string img5, int ScreenImg, int show, int offer, string itemnum, decimal itemprice)
         {
-            sql = @"insert into Detail (id_subcat, Title, SubTitle,Desc1,Desc2,img1,img2,img3,img4,img5,ScreenImg,show,admin_user,offer) values " +
-                "(@id_subcat, @Title, @SubTitle,@Desc1,@Desc2,@img1,@img2,@img3,@img4,@img5,@ScreenImg,@show,@admin_user,@offer)";
+            sql = @"insert into Detail (id_subcat, Title, SubTitle,Desc1,Desc2,img1,img2,img3,img4,img5,ScreenImg,show,admin_user,offer,itemnum,itemprice) values " +
+                "(@id_subcat, @Title, @SubTitle,@Desc1,@Desc2,@img1,@img2,@img3,@img4,@img5,@ScreenImg,@show,@admin_user,@offer,@itemnum,@itemprice)";
             initialize();
             connection = new SqlConnection(connetionString);
             connection.Open();
@@ -339,9 +339,8 @@ namespace Market_International
             command.Parameters.Add(new SqlParameter("show", show));
             command.Parameters.Add(new SqlParameter("admin_user", admin_user));
             command.Parameters.Add(new SqlParameter("offer", offer));
-
-
-
+            command.Parameters.Add(new SqlParameter("itemnum", itemnum));
+            command.Parameters.Add(new SqlParameter("itemprice", itemprice));
             command.ExecuteNonQuery();
             command.Dispose();
             connection.Close();
@@ -353,7 +352,7 @@ namespace Market_International
         {
             List<DetailObject> ReturnObject = new List<DetailObject>();
 
-            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show,offer from Detail  where id_subcat = @id_subcat order by title ";
+            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show,offer,itemnum,itemprice from Detail  where id_subcat = @id_subcat order by title ";
             initialize();
             connection = new SqlConnection(connetionString);
             connection.Open();
@@ -381,6 +380,8 @@ namespace Market_International
                 ReturnRecord.ScreenImg = Convert.ToInt32(dataReader.GetValue(12));
                 ReturnRecord.show = Convert.ToInt32(dataReader.GetValue(13));
                 ReturnRecord.offer = Convert.ToInt32(dataReader.GetValue(14));
+                ReturnRecord.itemnum = dataReader.GetValue(15).ToString();
+                ReturnRecord.itemprice = Convert.ToDecimal(dataReader.GetValue(16));
                 ReturnObject.Add(ReturnRecord);
             }
             dataReader.Close();
@@ -393,7 +394,7 @@ namespace Market_International
             int LocalId = Convert.ToInt32(id); 
             DetailObject ReturnRecord = new DetailObject();
 
-            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show,offer from Detail  where id = @id order by title ";
+            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show,offer,itemnum,itemprice from Detail  where id = @id order by title ";
             initialize();
             connection = new SqlConnection(connetionString);
             connection.Open();
@@ -420,7 +421,8 @@ namespace Market_International
                 ReturnRecord.ScreenImg = Convert.ToInt32(dataReader.GetValue(12));
                 ReturnRecord.show = Convert.ToInt32(dataReader.GetValue(13));
                 ReturnRecord.offer = Convert.ToInt32(dataReader.GetValue(14));
-                
+                ReturnRecord.itemnum = dataReader.GetValue(15).ToString();
+                ReturnRecord.itemprice = Convert.ToDecimal(dataReader.GetValue(16));                
             }
             dataReader.Close();
             command.Dispose();
@@ -429,10 +431,10 @@ namespace Market_International
         }
         // DetailUpdate
         public void DetailUpdate(int id, int id_subcat, string title, string subtitle, string desc1, string desc2, string img1, string img2,
-            string img3, string img4, string img5, int screenImg, int show,int offer)
+            string img3, string img4, string img5, int screenImg, int show, int offer, string itemnum, decimal itemprice)
         {
             sql = "update Detail set id_subcat= @id_subcat, title=@title,subtitle = @subtitle,desc1 = @desc1,desc2 = @desc2,img1 = @img1, " +
-                " img2 = @img2,img3 = @img3,img4 = @img4,img5 = @img5,screenImg = @screenImg,show = @show,offer = @offer where id = @id ";
+                " img2 = @img2,img3 = @img3,img4 = @img4,img5 = @img5,screenImg = @screenImg,show = @show,offer = @offer,itemnum = @itemnum,itemprice = @itemprice where id = @id ";
             initialize();
             connection = new SqlConnection(connetionString);
             connection.Open();
@@ -451,6 +453,8 @@ namespace Market_International
             command.Parameters.Add(new SqlParameter("screenImg", screenImg));
             command.Parameters.Add(new SqlParameter("show", show));
             command.Parameters.Add(new SqlParameter("offer", offer));
+            command.Parameters.Add(new SqlParameter("itemnum", itemnum));
+            command.Parameters.Add(new SqlParameter("itemprice", itemprice));
             command.ExecuteNonQuery();
             command.Dispose();
             connection.Close();
@@ -530,7 +534,7 @@ namespace Market_International
         {
             List<DetailObject> ReturnObject = new List<DetailObject>();
 
-            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show,offer from Detail  where ScreenImg = 1 and show = 1 order by title ";
+            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show,offer,itemnum,itemprice from Detail  where ScreenImg = 1 and show = 1 order by title ";
             initialize();
             connection = new SqlConnection(connetionString);
             connection.Open();
@@ -557,6 +561,8 @@ namespace Market_International
                 ReturnRecord.ScreenImg = Convert.ToInt32(dataReader.GetValue(12));
                 ReturnRecord.show = Convert.ToInt32(dataReader.GetValue(13));
                 ReturnRecord.offer = Convert.ToInt32(dataReader.GetValue(14));
+                ReturnRecord.itemnum = dataReader.GetValue(15).ToString();
+                ReturnRecord.itemprice = Convert.ToDecimal(dataReader.GetValue(16));
                 ReturnObject.Add(ReturnRecord);
             }
             dataReader.Close();
@@ -569,7 +575,7 @@ namespace Market_International
         {
             List<DetailObject> ReturnObject = new List<DetailObject>();
 
-            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show,offer from Detail  where ScreenImg = 2 and show = 1 order by title ";
+            sql = "select id,id_subcat,title,subtitle,Desc1,Desc2,created,img1,img2,img3,img4,img5,ScreenImg,show,offer,itemnum,itemprice from Detail  where ScreenImg = 2 and show = 1 order by title ";
             initialize();
             connection = new SqlConnection(connetionString);
             connection.Open();
@@ -596,6 +602,8 @@ namespace Market_International
                 ReturnRecord.ScreenImg = Convert.ToInt32(dataReader.GetValue(12));
                 ReturnRecord.show = Convert.ToInt32(dataReader.GetValue(13));
                 ReturnRecord.offer = Convert.ToInt32(dataReader.GetValue(14));
+                ReturnRecord.itemnum = dataReader.GetValue(15).ToString();
+                ReturnRecord.itemprice = Convert.ToDecimal(dataReader.GetValue(16));
                 ReturnObject.Add(ReturnRecord);
             }
             dataReader.Close();
@@ -618,15 +626,24 @@ namespace Market_International
             return table;
         }
 
-        public void AddOffer(int DetailId, decimal offer)
+        public void AddOffer(int detailid,decimal offer,decimal itemorder, string fname, string lname, string address, string email, 
+            string gender, string curency,string note)
         {
             initialize();
-            sql = "insert into offer (DetailId,offer) values(@DetailId,@offer) ";
+            sql = "insert into offer (detailid,offer,itemorder,fname,lname,address,email,gender,curency,note) values(@detailid,@offer,@itemorder,@fname,@lname,@address,@email,@gender,@curency,@note) ";
             connection = new SqlConnection(connetionString);
             connection.Open();
             command = new SqlCommand(sql, connection);
-            command.Parameters.Add(new SqlParameter("DetailId", DetailId));
+            command.Parameters.Add(new SqlParameter("detailid", detailid));
             command.Parameters.Add(new SqlParameter("offer", offer));
+            command.Parameters.Add(new SqlParameter("itemorder", itemorder));            
+            command.Parameters.Add(new SqlParameter("fname", fname));
+            command.Parameters.Add(new SqlParameter("lname", lname));
+            command.Parameters.Add(new SqlParameter("address", address));
+            command.Parameters.Add(new SqlParameter("email", email));
+            command.Parameters.Add(new SqlParameter("gender", gender));
+            command.Parameters.Add(new SqlParameter("curency", curency));
+            command.Parameters.Add(new SqlParameter("note", note));
             command.ExecuteNonQuery();
             command.Dispose();
             connection.Close();
@@ -651,6 +668,28 @@ namespace Market_International
             connection.Close();
         }
 
+        public void addvisitor(string ipaddress,string countryname,string countrycode,string cityname,string regionname,string zipcode,
+            string latitude,string longitude,string timezone)
+        {
+            sql = "insert into visitor (ipaddress,countryname,countrycode,cityname,regionname,zipcode,latitude,longitude,timezone) " +
+                " values(@ipaddress,@countryname,@countrycode,@cityname,@regionname,@zipcode,@latitude,@longitude,@timezone)"; 
+            initialize();
+            connection = new SqlConnection(connetionString);
+            connection.Open();
+            command = new SqlCommand(sql, connection);
+            command.Parameters.Add(new SqlParameter("ipaddress", ipaddress));
+            command.Parameters.Add(new SqlParameter("countryname", countryname));
+            command.Parameters.Add(new SqlParameter("countrycode", countrycode));
+            command.Parameters.Add(new SqlParameter("cityname", cityname));
+            command.Parameters.Add(new SqlParameter("regionname", regionname));
+            command.Parameters.Add(new SqlParameter("zipcode", zipcode));
+            command.Parameters.Add(new SqlParameter("latitude", latitude));
+            command.Parameters.Add(new SqlParameter("longitude", longitude));
+            command.Parameters.Add(new SqlParameter("timezone", timezone));
+            command.ExecuteNonQuery();
+            command.Dispose();
+            connection.Close();
 
+        }
     }
 }

@@ -22,5 +22,7 @@ namespace Market_International
         public int ScreenImg { get; set; }
         public int show { get; set; }
         public int offer { get; set; }
+        public string itemnum { get; set; }
+        public decimal itemprice { get; set; }
     }
 }

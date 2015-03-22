@@ -11,6 +11,13 @@ namespace Market_International
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack == true)
+            {
+                string id = (Request["OfferId"].ToString());
+                decimal OfferAmount = Convert.ToDecimal(Request[id]);
+                Response.Redirect("./OfferRegister.aspx?id=" + id + "&amount=" + OfferAmount);
+
+            }
 
         }
     }

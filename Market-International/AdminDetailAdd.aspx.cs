@@ -37,6 +37,8 @@ namespace Market_International
                 {
                     sql_object SqlObj = new sql_object();
                     DetailObject DetObj = SqlObj.GetDetail(Request["id"]);
+                    ItemNum.Text = DetObj.itemnum;
+                    Price.Text = DetObj.itemprice.ToString();
                     TitleText.Text = DetObj.title;
                     SubTitleText.Text = DetObj.subtitle;
                     Desc1Text.Text = DetObj.Desc1;
@@ -114,6 +116,8 @@ namespace Market_International
             string myUniqueFileName3 = null;
             string myUniqueFileName4 = null;
             string myUniqueFileName5 = null;
+            int imgwidth = 0;
+            int imgheight = 0; 
 
             if (flupImage1.PostedFile != null && flupImage1.PostedFile.FileName != "")
             {
@@ -123,9 +127,17 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName1;
                 HttpPostedFile pf = flupImage1.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
-                // flupImage1.SaveAs(Server.MapPath(imgPath));
+                if (!img1chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img1w"]);
+                    imgheight = Convert.ToInt32(Request["img1h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage1.SaveAs(Server.MapPath(imgPath));
+                }
             }
 
             if (flupImage2.PostedFile != null && flupImage2.PostedFile.FileName != "")
@@ -136,8 +148,18 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName2;
                 HttpPostedFile pf = flupImage2.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img2chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img2w"]);
+                    imgheight = Convert.ToInt32(Request["img2h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage2.SaveAs(Server.MapPath(imgPath));
+                }
+
             }
 
             if (flupImage3.PostedFile != null && flupImage3.PostedFile.FileName != "")
@@ -148,8 +170,18 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName3;
                 HttpPostedFile pf = flupImage3.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img3chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img3w"]);
+                    imgheight = Convert.ToInt32(Request["img3h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage3.SaveAs(Server.MapPath(imgPath));
+                }
+
             }
 
             if (flupImage4.PostedFile != null && flupImage4.PostedFile.FileName != "")
@@ -160,8 +192,18 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName4;
                 HttpPostedFile pf = flupImage4.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img4chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img4w"]);
+                    imgheight = Convert.ToInt32(Request["img4h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage4.SaveAs(Server.MapPath(imgPath));
+                }
+
             }
 
             if (flupImage5.PostedFile != null && flupImage5.PostedFile.FileName != "")
@@ -172,8 +214,18 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName5;
                 HttpPostedFile pf = flupImage5.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img5chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img5w"]);
+                    imgheight = Convert.ToInt32(Request["img5h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage5.SaveAs(Server.MapPath(imgPath));
+                }
+
             }
 
             string Title = TitleText.Text;
@@ -193,10 +245,12 @@ namespace Market_International
             if (DetailOffer.Checked == true)
                 offer = 1;
             else
-                offer = 2; 
+                offer = 2;
+
+            string price = Price.Text == "" ? "0" : Price.Text;
             sql_object sql_obj = new sql_object();
             sql_obj.DetailAdd(SubCatId, Title, SubTitle, Desc1, Desc2, myUniqueFileName1, myUniqueFileName2, myUniqueFileName3,
-                myUniqueFileName4, myUniqueFileName5, ScreenImage, show,offer);
+                myUniqueFileName4, myUniqueFileName5, ScreenImage, show, offer, ItemNum.Text, Convert.ToDecimal(price));
 
         }
 
@@ -222,6 +276,8 @@ namespace Market_International
             string myUniqueFileName3 = null;
             string myUniqueFileName4 = null;
             string myUniqueFileName5 = null;
+            int imgwidth = 0;
+            int imgheight = 0; 
 
             if (flupImage1.PostedFile != null && flupImage1.PostedFile.FileName != "")
             {
@@ -231,8 +287,17 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName1;
                 HttpPostedFile pf = flupImage1.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img1chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img1w"]);
+                    imgheight = Convert.ToInt32(Request["img1h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage1.SaveAs(Server.MapPath(imgPath));
+                }
                 imgPath = "image/" + FieldImage1.Value;
                 if (File.Exists(Server.MapPath(imgPath)))
                 {
@@ -249,8 +314,17 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName2;
                 HttpPostedFile pf = flupImage2.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img2chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img2w"]);
+                    imgheight = Convert.ToInt32(Request["img2h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage2.SaveAs(Server.MapPath(imgPath));
+                }
                 imgPath = "image/" + FieldImage2.Value;
                 if (File.Exists(Server.MapPath(imgPath)))
                 {
@@ -267,8 +341,17 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName3;
                 HttpPostedFile pf = flupImage3.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img3chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img3w"]);
+                    imgheight = Convert.ToInt32(Request["img3h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage3.SaveAs(Server.MapPath(imgPath));
+                }
                 imgPath = "image/" + FieldImage3.Value;
                 if (File.Exists(Server.MapPath(imgPath)))
                 {
@@ -285,8 +368,17 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName4;
                 HttpPostedFile pf = flupImage4.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img4chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img4w"]);
+                    imgheight = Convert.ToInt32(Request["img4h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage4.SaveAs(Server.MapPath(imgPath));
+                }
                 imgPath = "image/" + FieldImage4.Value;
                 if (File.Exists(Server.MapPath(imgPath)))
                 {
@@ -303,8 +395,17 @@ namespace Market_International
                 string imgPath = "image/" + myUniqueFileName5;
                 HttpPostedFile pf = flupImage5.PostedFile;
                 System.Drawing.Image bm = System.Drawing.Image.FromStream(pf.InputStream);
-                bm = ResizeBitmap((Bitmap)bm, 1280, 854); /// new width, height
-                bm.Save(Server.MapPath(imgPath));
+                if (!img5chk.Checked)
+                {
+                    imgwidth = Convert.ToInt32(Request["img5w"]);
+                    imgheight = Convert.ToInt32(Request["img5h"]);
+                    bm = ResizeBitmap((Bitmap)bm, imgwidth, imgheight); /// new width, height
+                    bm.Save(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    flupImage5.SaveAs(Server.MapPath(imgPath));
+                }
                 imgPath = "image/" + FieldImage5.Value;
                 if (File.Exists(Server.MapPath(imgPath)))
                 {
@@ -329,11 +430,12 @@ namespace Market_International
             if (DetailOffer.Checked == true)
                 offer = 1;
             else
-                offer = 2; 
+                offer = 2;
+            string price = Price.Text == "" ? "0" : Price.Text;
 
             sql_object sql_obj = new sql_object();
             sql_obj.DetailUpdate(Id, SubCatId, Title, SubTitle, Desc1, Desc2, FieldImage1.Value, FieldImage2.Value, FieldImage3.Value,
-                FieldImage4.Value, FieldImage5.Value, ScreenImage, show, offer);
+                FieldImage4.Value, FieldImage5.Value, ScreenImage, show, offer, ItemNum.Text, Convert.ToDecimal(price));
 
         }
 

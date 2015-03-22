@@ -20,7 +20,7 @@
     {
        Response.Write("<div class=\"zoom-left\">");
        Response.Write("<img style=\"border:1px solid #e8e8e6;\" id=\"zoom_01\" src=\"image/" + 
-       DetailObj.img1+  "\" data-zoom-image=\"image/" + DetailObj.img1 + "\" width=\"411px\" height=\"274px\" >");
+       DetailObj.img1+  "\" data-zoom-image=\"image/" + DetailObj.img1 + "\" width=\"500px\"  >");
        Response.Write("</div>");        
     }
 

@@ -4,10 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta name="author" content="Amir Kazempour" />
+    <meta name="google-site-verification" content="EAlqftq4nLS5pZEP9874yYsUF7Jx903BtKExCCUhHIc" />
+
     <title>Market International</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="Keywords" content="Markt,Tapijten,Perzische tapijten,Oosterse tapijten,Bankstel,Meubels,Stoelen,Tafel,Slaapkamer artikelen,Eetkamer,
+   Lampen,Salontafel,Eettafel,Bijzettafels,Sidetables,Market,Carpet,Persian Rug,Eastern rug,sofa,chair,table,bedroom article,Dining room,
+        lamps,Coffee table,Dining table,Occasional table" />
+    <meta name="description" content="Market International" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-     <meta name="google-translate-customization" content="9a8492743b453de3-a7183acf178f25fc-gcb6e7ecdc6b732f8-1c"></meta>
     <style>
         body{
             font-family:'Courier New';
@@ -115,9 +123,7 @@
             <div  style="text-align:center">
                 <a  class="menu" href="./Default.aspx">Home</a>
                 <a  class="menu" href="./Contact.aspx">Contact</a>
-                <a  class="menu" href="#">Login</a>
-                <a  class="menu" href="./Contact.aspx">Register</a>
-                <a  class="menu" href="#">Who we are</a>
+                <a  class="menu" href="./WhoWeAre.aspx">Who we are</a>
                 <br /><br />
             </div>
 

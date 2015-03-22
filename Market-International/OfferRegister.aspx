@@ -26,10 +26,17 @@
         <label >You will be contacted by email.</label><br /><br />
     </div>
     <br />
+    <label class="Contact_text">Article number:</label>
+    <asp:TextBox ID="itemnum" runat="server"></asp:TextBox><br /><br />
     <label class="Contact_text">Product:</label>
     <asp:TextBox ID="Item" runat="server"></asp:TextBox><br /><br />
     <label class="Contact_text">Offer:</label>
-    <asp:TextBox ID="Offer" runat="server"></asp:TextBox><br /><br />
+    <asp:TextBox ID="Offer" runat="server"></asp:TextBox>
+        <asp:DropDownList ID="Curency" runat="server" Width="151px">
+            <asp:ListItem Selected>Euro</asp:ListItem>
+            <asp:ListItem>US Dollars</asp:ListItem>
+        </asp:DropDownList>
+        <br /><br />
     <asp:Label ID="Labelfname"  CssClass="Contact_text" runat="server" Text="First Name:"></asp:Label>
     <asp:TextBox ID="FirstName" runat="server" Width="30%"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1"  ForeColor="Red" ControlToValidate="FirstName" runat="server" ErrorMessage="***First name is required."></asp:RequiredFieldValidator>
@@ -54,6 +61,9 @@
     <asp:RadioButton ID="Male" runat="server" GroupName="gender"  Checked="true"/><br />
     <asp:Label ID="Label2"  CssClass="Contact_text" runat="server" Text="Female:"></asp:Label>
     <asp:RadioButton ID="Female" runat="server" GroupName="gender"  /><br /><br />
+    <asp:Label ID="Label3" CssClass="Contact_text" runat="server" Text="Note:"></asp:Label>
+    <asp:TextBox ID="Note" runat="server" Width="30%"  Height="50px" TextMode="MultiLine" ></asp:TextBox><br /><br />
+
     <br /><br />
     
     <asp:Button ID="Ok" runat="server" CssClass="Button_Allign" Text="Ok" Width="10%" OnClick="Ok_Click" />

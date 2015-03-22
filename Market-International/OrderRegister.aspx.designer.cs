@@ -10,7 +10,7 @@
 namespace Market_International {
     
     
-    public partial class OfferRegister {
+    public partial class OrderRegister {
         
         /// <summary>
         /// EmailErr control.
@@ -40,22 +40,13 @@ namespace Market_International {
         protected global::System.Web.UI.WebControls.TextBox Item;
         
         /// <summary>
-        /// Offer control.
+        /// Order control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Offer;
-        
-        /// <summary>
-        /// Curency control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Curency;
+        protected global::System.Web.UI.WebControls.TextBox Order;
         
         /// <summary>
         /// Labelfname control.

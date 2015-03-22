@@ -13,6 +13,24 @@ namespace Market_International {
     public partial class AdminDetailAdd {
         
         /// <summary>
+        /// ItemNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ItemNum;
+        
+        /// <summary>
+        /// Price control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Price;
+        
+        /// <summary>
         /// Show control.
         /// </summary>
         /// <remarks>
@@ -112,7 +130,7 @@ namespace Market_International {
         protected global::System.Web.UI.WebControls.RadioButton DetailOffer;
         
         /// <summary>
-        /// Detail order control.
+        /// Detailorder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -139,6 +157,15 @@ namespace Market_International {
         protected global::System.Web.UI.WebControls.FileUpload flupImage1;
         
         /// <summary>
+        /// img1chk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox img1chk;
+        
+        /// <summary>
         /// ImgPrv2 control.
         /// </summary>
         /// <remarks>
@@ -155,6 +182,15 @@ namespace Market_International {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload flupImage2;
+        
+        /// <summary>
+        /// img2chk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox img2chk;
         
         /// <summary>
         /// ImgPrv3 control.
@@ -175,6 +211,15 @@ namespace Market_International {
         protected global::System.Web.UI.WebControls.FileUpload flupImage3;
         
         /// <summary>
+        /// img3chk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox img3chk;
+        
+        /// <summary>
         /// ImgPrv4 control.
         /// </summary>
         /// <remarks>
@@ -193,6 +238,15 @@ namespace Market_International {
         protected global::System.Web.UI.WebControls.FileUpload flupImage4;
         
         /// <summary>
+        /// img4chk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox img4chk;
+        
+        /// <summary>
         /// ImgPrv5 control.
         /// </summary>
         /// <remarks>
@@ -209,6 +263,15 @@ namespace Market_International {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload flupImage5;
+        
+        /// <summary>
+        /// img5chk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox img5chk;
         
         /// <summary>
         /// Submit control.

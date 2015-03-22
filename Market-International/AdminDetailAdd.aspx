@@ -27,10 +27,17 @@
             }
         }
     </script>
-
+    <style>
+        .spin{
+            width:3%;
+        }
+    </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <label>Item #:</label><asp:TextBox ID="ItemNum" runat="server"></asp:TextBox><br /><br />
+    <label>Price:</label><asp:TextBox ID="Price" runat="server"></asp:TextBox><br /><br />
+
     <label>Show:</label><asp:CheckBox ID="Show" runat="server" Checked="True" ToolTip="Checked: will be shown." />
 
     <br />
@@ -67,18 +74,38 @@
 
     <label>Image1:</label><asp:Image ID="ImgPrv1" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356" /><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage1" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv1');" />
+        <input  class="spin" type="number" name="img1w" id="img1w" min="0"  step="1" value="0" title="Width">
+        <input class="spin" type="number" name="img1h" id="img1h" min="0"  step="1" value="0" title="Height">
+        <span>Default Size:</span><asp:CheckBox ID="img1chk" runat="server" Checked="True" />
+
     <br /><br />
     <label>Image2:</label><asp:Image ID="ImgPrv2" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356" /><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage2" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv2');" />
+    <input  class="spin" type="number" name="img2w" id="img2w" min="0"  step="1" value="0" title="Width">
+    <input class="spin" type="number" name="img2h" id="img2h" min="0"  step="1" value="0" title="Height">
+    <span>Default Size:</span><asp:CheckBox ID="img2chk" runat="server" Checked="True" />
+
     <br /><br />
     <label>Image3:</label><asp:Image ID="ImgPrv3" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356" /><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage3" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv3');" />
+    <input  class="spin" type="number" name="img3w" id="img3w" min="0"  step="1" value="0" title="Width">
+    <input class="spin" type="number" name="img3h" id="img3h" min="0"  step="1" value="0" title="Height">
+    <span>Default Size:</span><asp:CheckBox ID="img3chk" runat="server" Checked="True" />
+
     <br /><br />
     <label>Image4:</label><asp:Image ID="ImgPrv4" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356"/><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage4" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv4');" />
+    <input  class="spin" type="number" name="img4w" id="img4w" min="0"  step="1" value="0" title="Width">
+    <input class="spin" type="number" name="img4h" id="img4h" min="0"  step="1" value="0" title="Height">
+    <span>Default Size:</span><asp:CheckBox ID="img4chk" runat="server" Checked="True" />
+
     <br /><br />
     <label>Image5:</label><asp:Image ID="ImgPrv5" Height="155px" Width="399px" runat="server" ToolTip="Best result:width:800 height:356"/><br />
     <asp:FileUpload CssClass="leftassign" ID="flupImage5" runat="server" onchange="ShowpImagePreview(this,'ContentPlaceHolder1_ImgPrv5');" />
+    <input  class="spin" type="number" name="img5w" id="img5w" min="0"  step="1" value="0" title="Width">
+    <input class="spin" type="number" name="img5h" id="img5h" min="0"  step="1" value="0" title="Height">
+    <span>Default Size:</span><asp:CheckBox ID="img5chk" runat="server" Checked="True" />
+
     <br /><br /><br />
     <asp:Button CssClass="leftassign" ID="Submit"  runat="server" Text="Upload" OnClick="Summit" />
 

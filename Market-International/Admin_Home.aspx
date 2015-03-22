@@ -89,11 +89,11 @@
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead>
 <tr>
-<th>title</th><th>SubTitle</th><th>Desc1</th><th>Desc2</th><th>created</th><th>Img1</th><th>Img2</th><th>Img3</th><th>Img4</th><th>Img5</th><th>Edit</th><th>Delete</th>
+<th>Item#</th><th>Price</th><th>title</th><th>SubTitle</th><th>Desc1</th><th>Desc2</th><th>Image Location</th><th>Offer-Order</th><th>created</th><th>Img1</th><th>Img2</th><th>Img3</th><th>Img4</th><th>Img5</th><th>Edit</th><th>Delete</th>
 </thead>
 <tfoot>
 <tr>
-<th>title</th><th>SubTitle</th><th>Desc1</th><th>Desc2</th><th>created</th><th>Img1</th><th>Img2</th><th>Img3</th><th>Img4</th><th>Img5</th><th>Edit</th><th>Delete</th>
+<th>Item#</th><th>Price</th><th>title</th><th>SubTitle</th><th>Desc1</th><th>Desc2</th><th>Image Location</th><th>Offer-Order</th><th>created</th><th>Img1</th><th>Img2</th><th>Img3</th><th>Img4</th><th>Img5</th><th>Edit</th><th>Delete</th>
 
 </tr>
 </tfoot>
@@ -106,17 +106,32 @@
     string Desc1 = null;
     string Desc2 = null;
     string edit = null;
-    string delete = null;    
-    
+    string delete = null;
+    string imagelocation = null;
     foreach (Market_International.DetailObject item in DetailRecord)
     {
         Desc1 = item.Desc1.Length > 21 ? item.Desc1.Substring(0, 20) : item.Desc1;
         Desc2 = item.Desc2.Length > 21 ? item.Desc2.Substring(0, 20) : item.Desc2;
+        switch (item.ScreenImg)
+	{
+            case 1: imagelocation = "Main Image Scroll";
+                break;
+            case 2: imagelocation = "Main Page";
+                break; 
+            case 3: imagelocation = "Page Detail";
+                break;
+ break;
+	}
+        
+        
+            
         edit = "<a href=\"./AdminDetailAdd.aspx?action=edit&id=" + item.id + "&id_subcat=" + sub + "\">Edit</a>";
-        delete = "<a href=\"./Admin_Home.aspx?action=delete&id=" + item.id + "\">Delete</a>";  
+        delete = "<a href=\"./Admin_Home.aspx?action=delete&id=" + item.id + "\">Delete</a>";
+          
      %>
-       <tr><td><%=item.title %></td><td><%=item.subtitle %></td><td><%= Desc1 %></td><td><%= Desc2 %></td><td><%=item.created %></td><td><%=item.img1 %></td>
-           <td><%=item.img2 %></td><td><%=item.img3 %></td><td><%=item.img4 %></td><td><%=item.img5 %></td><td><%=edit %></td><td><%=delete %></td></tr>
+       <tr><th><%=item.itemnum %></th><th><%= item.itemprice==null?0:item.itemprice%></th><td><%=item.title %></td><td><%=item.subtitle %></td><td><%= Desc1 %></td><td><%= Desc2 %></td><td><%=imagelocation %></td><th><%=item.offer == 1 ? "Ofer" : "Order"%></th><td><%=item.created %></td><td><%=item.img1==null || item.img1==""?"No":"Yes"%></td>
+           <td><%=item.img2==null || item.img2==""?"No":"Yes" %></td><td><%=item.img3==null || item.img3==""?"No":"Yes"%></td>
+           <td><%=item.img4==null || item.img4==""?"No":"Yes" %></td><td><%=item.img5==null || item.img5==""?"No":"Yes" %></td><td><%=edit %></td><td><%=delete %></td></tr>
 <%} %>
 </tbody></table></p>
 

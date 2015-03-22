@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="Market International" Language="C#" MasterPageFile="~/Mark_Int.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Market_International.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        em{
+            font-size:xx-large;
+            color:white;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="css/slider_style.css" rel="stylesheet" type="text/css" />
@@ -53,27 +59,27 @@
                 if (FieldValidate == "")
                 {
                     document.getElementById(labelid).style.visibility = "visible";
-                    document.getElementById(labelid).innerHTML = "Please enter your offer.";
+                    document.getElementById(labelid).innerHTML = "Please enter your offer.<br /> Empty offer is not permitted. ";
                     return;
                 }
                 if (isNaN(FieldValidate))
                 {
                     document.getElementById(labelid).style.visibility = "visible";
-                    document.getElementById(labelid).innerHTML = "Please enter numeric value.";
+                    document.getElementById(labelid).innerHTML = "incorrect format. <br />Decimal point and separator are not supported.";
                     return; 
                 }
                 var n = FieldValidate.indexOf(".");
                 if (n>0)
                 {
                     document.getElementById(labelid).style.visibility = "visible";
-                    document.getElementById(labelid).innerHTML = "Decimal point is not allowed.";
+                    document.getElementById(labelid).innerHTML = "incorrect format. <br />Decimal point and separator are not supported.";
                     return;
                 }
 
                 n = FieldValidate.indexOf(",");
                 if (n > 0) {
                     document.getElementById(labelid).style.visibility = "visible";
-                    document.getElementById(labelid).innerHTML = "Decimal point is not allowed.";
+                    document.getElementById(labelid).innerHTML = "incorrect format. <br />Decimal point and separator are not supported.";
                     return;
                 }
                 document.getElementById('OfferId').value = id;
@@ -96,26 +102,34 @@
              %>
 
             <div class="box2">
-                <a target="_blank" href=<%="/MarkDetailZoom.aspx?id="+ item.id %>  >
+                <a href=<%="/MarkDetailZoom.aspx?id="+ item.id %>  >
                     <img class="image_size" src=<%="image/" + item.img1 %> alt="Klematis">
                 </a>
                 <br>
+                <em>Article number: <%=item.itemnum %> </em><br />
+                <em><% =item.title %>  </em><br />
+                <em><%=item.subtitle %></em><br />
                 <label><%=Detail %></label><br>
                 <%
                 string offer = ""; 
                 if (item.offer==1)
                 {
-                    offer = "<label>Offer:</label> <input type=\"text\" Title=\"Please round up your offer.\"  name=\"" + item.id + "\" id=\"" + item.id + "\"><br /> " +
-                    "<input type=\"button\"  value=\"Submit\" onclick=\" validate('" + item.id + "');\">" +
+                    offer = "<label>Offer:</label> <input type=\"text\" Title=\"Decimal point and separator are not supported.\"  name=\"" + item.id + "\" id=\"" + item.id + "\"><br /> " +
+                    "<input type=\"button\"  value=\"Submit\" onclick=\" validate('" + item.id + "');\"><br />" +
                     "<label id=\"label" + item.id + "\" style=\"color:red; visibility:hidden;\"></label>" ;
-                    Response.Write(offer);
                 }
+                else
+                {
+                    
+                    offer = "<label><em>Price: " + item.itemprice + "</em></label><br /><input type=\"button\" Title=\"Place your order.\" value=\"Place your order\" onclick=\"Javascript: location.href='./OrderRegister.aspx?id=" + item.id + "';\"/>"; 
+                }
+                Response.Write(offer);
                      %>
                 
                 <br />
             </div>
         
-
+        
         <%
                 counter++;
                 if(counter==2)
