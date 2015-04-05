@@ -29,10 +29,10 @@ namespace Market_International
                 {
                     RegisterVisitor();
                 }
-                if (!(Session["visitor"].ToString() == "86.81.102.253"  || Session["visitor"].ToString() ==  "87.208.82.191") )
+               /*  if (!(Session["visitor"].ToString() == "86.81.102.253"  || Session["visitor"].ToString() ==  "87.208.82.191") )
                 {
                     Response.Redirect("./WebForm2.aspx");
-                }
+                }  */
 
 
             }

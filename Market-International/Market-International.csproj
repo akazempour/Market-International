@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Address.aspx" />
     <Content Include="AdminDetailAdd.aspx" />
     <Content Include="AdminOffer.aspx" />
     <Content Include="Admin_Home.aspx" />
@@ -89,6 +90,13 @@
     <Content Include="WhoWeAre.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.aspx.cs">
+      <DependentUpon>Address.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Address.aspx.designer.cs">
+      <DependentUpon>Address.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

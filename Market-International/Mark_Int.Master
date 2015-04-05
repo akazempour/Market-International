@@ -13,7 +13,7 @@
     <meta name="Keywords" content="Markt,Tapijten,Perzische tapijten,Oosterse tapijten,Bankstel,Meubels,Stoelen,Tafel,Slaapkamer artikelen,Eetkamer,
    Lampen,Salontafel,Eettafel,Bijzettafels,Sidetables,Market,Carpet,Persian Rug,Eastern rug,sofa,chair,table,bedroom article,Dining room,
         lamps,Coffee table,Dining table,Occasional table" />
-    <meta name="description" content="Market International" />
+    <meta name="description" content="Wij verkopen Tapijten, Perzische en Oosterse tapijten, Handgeknoopt met certificaten van echtheid." />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style>
@@ -124,6 +124,7 @@
                 <a  class="menu" href="./Default.aspx">Home</a>
                 <a  class="menu" href="./Contact.aspx">Contact</a>
                 <a  class="menu" href="./WhoWeAre.aspx">Who we are</a>
+                <a  class="menu" href="./Address.aspx">Address</a>
                 <br /><br />
             </div>
 
